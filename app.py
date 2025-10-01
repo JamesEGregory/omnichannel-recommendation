@@ -49,4 +49,4 @@ for q in questions:
     elif qtype == "numeric":
         responses[qid] = st.number_input(qtext, min_value=0, step=1)
     elif qtype == "text":
-        responses[qid] = st.text_input(_
+        responses[qid] = st.text_input(q_text)
