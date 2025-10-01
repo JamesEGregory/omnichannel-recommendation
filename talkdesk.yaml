@@ -1,0 +1,38 @@
+name: "Talkdesk"
+sweet_spot:
+  scale: "Mid to large contact centres (200–5000+ agents)"
+  it_capacity: "Medium — works well with in-house teams or SI partners"
+  industries: ["Government", "Banking", "Insurance", "Healthcare", "Retail", "Utilities"]
+  strength: "Verticalised packages, strong AI orchestration, modern platform with pre-built workflows"
+automation_depth: "Service Requests → Transactions → Agentic (developing)"
+channel_coverage:
+  channels: ["Voice", "Chat", "Email", "SMS", "Social", "WhatsApp"]
+  quality: "Tight integration across digital and voice, strong routing; good for omnichannel orchestration"
+integrations:
+  telephony:
+    pbx: "Cloud-native; SIP trunking supported; migration options from legacy PBX"
+    teams: true
+    sip_trunking: "Supported via SBC and APIs"
+  crm: ["Salesforce", "Dynamics 365", "ServiceNow", "Zendesk", "Custom REST"]
+  back_office:
+    connectors: ["Capita ONE", "Civica ICON", "Northgate", "Academy", "SAP", "Oracle", "OpenText"]
+    approach: "Strong API-first; vertical solution packages often include prebuilt connectors and templates"
+wem_analytics:
+  native: "Full WEM suite (forecasting, scheduling, QA, analytics) built-in"
+  gaps: ["Some analytics may require custom dashboards or Talkdesk Explore"]
+commercials:
+  model: "Per-agent SaaS with AI/automation modules available"
+  price_band: "£70–£130 per agent/month typical"
+  gotchas: ["Some AI/automation features are add-ons", "Deployment timelines can lengthen with complex integrations"]
+security_sovereignty:
+  residency: ["EU (Ireland)", "UK (on request)"]
+  certifications: ["ISO27001", "GDPR compliant", "G-Cloud listed"]
+public_sector_proof:
+  examples: ["European utilities and government departments", "Some UK council pilots via partners"]
+  notes: "Well-suited to omnichannel contact centres looking to modernise rapidly with strong AI"
+gartner_position:
+  quadrant: "Leader"
+  ability_to_execute: "High"
+  completeness_of_vision: "High"
+last_updated: "2025-10-01"
+source: ["Gartner MQ 2025", "Talkdesk website", "Partner case studies"]

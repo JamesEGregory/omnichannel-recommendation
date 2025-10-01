@@ -1,0 +1,38 @@
+name: "Cognigy"
+sweet_spot:
+  scale: "All sizes; excels when used as an AI layer over existing CCaaS/PBX"
+  it_capacity: "Medium to high — needs product owner and light engineering/partner support"
+  industries: ["Public sector", "Healthcare", "Financial services", "Telecoms", "Retail"]
+  strength: "Agentic/conversational AI layer that plugs into your existing contact center and CRM; fast deflection + deep orchestration without rip-and-replace"
+automation_depth: "Service Requests → Transactions → Complex / Agentic"
+channel_coverage:
+  channels: ["Voice", "Chat", "Email", "SMS", "WhatsApp", "Web messaging", "Social"]
+  quality: "Robust multi-channel agents and orchestration; strong hand-off to live agents with context"
+integrations:
+  telephony:
+    pbx: "Works above on-prem and cloud CCaaS (Genesys, AWS Connect, Talkdesk, Five9, Cisco, etc.)"
+    teams: true
+    sip_trunking: "Typically via the underlying CCaaS/PBX; Cognigy routes/bridges via integrations"
+  crm: ["Salesforce", "Dynamics 365", "ServiceNow", "Zendesk", "Custom REST/GraphQL"]
+  back_office:
+    connectors: ["SAP", "Oracle", "Capita ONE", "Civica ICON", "Northgate", "Academy", "Liquidlogic", "OpenText"]
+    approach: "API-first orchestration; connectors via marketplace/partners; supports RAG/LLM flows to reach line-of-business data"
+wem_analytics:
+  native: "Bot analytics, intent/entity reporting, journey KPIs; agent assist via integrations"
+  gaps: ["Relies on underlying CCaaS for WEM/QA/WFM depth"]
+commercials:
+  model: "Subscription (platform + MAUs/sessions) and/or consumption depending on deployment"
+  price_band: "Varies by volume; mid-market to enterprise"
+  gotchas: ["Plan for LLM and conversation-volume costs; align with CCaaS pricing"]
+security_sovereignty:
+  residency: ["EU", "UK (via hosting options/partners)"]
+  certifications: ["ISO27001", "GDPR compliant"]
+public_sector_proof:
+  examples: ["EU health insurers", "Municipal services via partners; UK pilots"]
+  notes: "Best used to add AI to existing voice/digital estate; rapid ROI on containment/deflection"
+gartner_position:
+  quadrant: "Not in CCaaS MQ (AI layer; separate coverage in Conversational/GenAI)"
+  ability_to_execute: "High (as AI platform)"
+  completeness_of_vision: "High"
+last_updated: "2025-10-01"
+source: ["Vendor site & docs", "AWS Marketplace listing", "Partner materials"]

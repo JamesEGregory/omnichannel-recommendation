@@ -1,0 +1,38 @@
+name: "8x8"
+sweet_spot:
+  scale: "SMB to mid-enterprise; multi-site; global PSTN"
+  it_capacity: "Low to medium — straightforward admin; strong for Teams estates"
+  industries: ["Public sector", "Education", "Retail", "Professional services"]
+  strength: "Teams-certified CCaaS/UCaaS with global telephony; quick deployment and good value"
+automation_depth: "Switchboard → Service Requests; AI features growing"
+channel_coverage:
+  channels: ["Voice", "Chat", "Email", "SMS", "WhatsApp (via connectors)"]
+  quality: "Solid omnichannel for common use cases; less depth for highly complex orchestration"
+integrations:
+  telephony:
+    pbx: "Cloud telephony; migrate from on-prem PBX"
+    teams: true
+    sip_trunking: "Operator Connect & Direct Routing options"
+  crm: ["Salesforce", "Dynamics 365", "ServiceNow", "Zendesk", "Freshdesk"]
+  back_office:
+    connectors: ["Capita ONE", "Civica ICON", "Northgate", "Academy"] 
+    approach: "APIs/marketplace; UK LOB via partners and low-code connectors"
+wem_analytics:
+  native: "Recording, QA, analytics; WFM available"
+  gaps: ["Advanced analytics/AI not as deep as Leaders"]
+commercials:
+  model: "Per-agent subscription; UC + CC bundles"
+  price_band: "£35–£85 per agent/month typical"
+  gotchas: ["Validate digital channel inclusions; confirm Teams call recording/compliance needs"]
+security_sovereignty:
+  residency: ["UK/EU DC options; confirm tenant"]
+  certifications: ["ISO27001", "GDPR", "G-Cloud listings"]
+public_sector_proof:
+  examples: ["UK councils & education; numerous Teams telephony modernisations"]
+  notes: "Excellent quick-win for cost + speed, especially with Microsoft estates"
+gartner_position:
+  quadrant: "Not in 2025 CCaaS MQ (seat-size criterion); Honorable Mention"
+  ability_to_execute: "Medium"
+  completeness_of_vision: "Medium"
+last_updated: "2025-10-01"
+source: ["8x8 Teams integration pages", "G-Cloud listings", "Partner docs"]

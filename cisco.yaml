@@ -1,0 +1,38 @@
+name: "Cisco (Webex Contact Center)"
+sweet_spot:
+  scale: "Mid-sized to large contact centres, especially those migrating from on-prem Cisco"
+  it_capacity: "Medium to high — best for IT teams comfortable with Cisco ecosystem or strong partners"
+  industries: ["Public sector", "Utilities", "Education", "Healthcare"]
+  strength: "Natural path for legacy Cisco PBX estates; solid omnichannel with UCaaS bundling"
+automation_depth: "Switchboard → Service Requests; AI expanding via Webex AI & partners"
+channel_coverage:
+  channels: ["Voice", "Chat", "Email", "SMS", "Social", "Web"]
+  quality: "Improved omnichannel experience in recent versions; strong telephony core"
+integrations:
+  telephony:
+    pbx: "Deep native integration with Cisco UC; can coexist with legacy PBX"
+    teams: "Supported via SBC/gateway integrations and coexistence models"
+    sip_trunking: "Fully supported (Cisco gateways, partner SBCs)"
+  crm: ["Salesforce", "Dynamics 365", "ServiceNow", "Zendesk"]
+  back_office:
+    connectors: ["Capita ONE", "Civica ICON", "Northgate", "Academy", "Oracle", "SAP"]
+    approach: "APIs, Webex App Hub connectors, partner-developed adapters"
+wem_analytics:
+  native: "WEM suite with recording, QA, scheduling, analytics"
+  gaps: ["Third-party integrations sometimes needed for advanced analytics & AI routing"]
+commercials:
+  model: "Per-agent subscription (CCaaS + UCaaS bundles common)"
+  price_band: "£50–£120 per agent/month typical"
+  gotchas: ["Multiple admin portals; validate integration costs and roadmap maturity"]
+security_sovereignty:
+  residency: ["UK/EU DCs available"]
+  certifications: ["ISO27001", "GDPR", "FedRAMP High (US)", "G-Cloud listed"]
+public_sector_proof:
+  examples: ["UK councils modernising Cisco estates", "Healthcare deployments"]
+  notes: "Best fit for councils with significant Cisco PBX footprint looking for gradual CCaaS uplift"
+gartner_position:
+  quadrant: "Niche Player (2025 MQ)"
+  ability_to_execute: "Medium"
+  completeness_of_vision: "Medium"
+last_updated: "2025-10-01"
+source: ["Gartner MQ 2025", "Cisco Webex Contact Center docs", "G-Cloud service definitions"]

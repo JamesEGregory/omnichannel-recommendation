@@ -1,0 +1,62 @@
+name: Genesys (Genesys Cloud CX)
+sweet_spot: >
+  Medium to large councils, especially those with complex service portfolios or multichannel ambitions.
+  Well suited to organisations needing strong journey analytics, mature CRM integration and agent support tooling.
+main_strength: >
+  Robust omnichannel routing, deep CRM and back-office integrations, and strong AI/analytics capabilities.
+
+automation_depth: "Switchboard → Service Requests → Transactions → Complex/Agentic"
+
+channels:
+  - Voice
+  - Webchat
+  - Email
+  - SMS
+  - Social (Facebook, Twitter, WhatsApp via AppFoundry)
+  - Video
+
+integrations:
+  telephony:
+    teams: Native integration and direct routing
+    pbx: SIP trunking and migration tools for Avaya, Cisco, Mitel
+  crm:
+    - Salesforce
+    - Dynamics 365
+    - Zendesk
+    - ServiceNow
+  back_office:
+    - Oracle
+    - SAP
+    - Capita ONE
+    - Civica
+    - Liquidlogic
+    - Northgate
+    - via API and AppFoundry marketplace connectors
+
+wem_analytics:
+  native: Strong WEM suite including forecasting, scheduling, quality management, analytics
+  advanced: Journey analytics and AI assistants included; AppFoundry partners expand further
+  gaps: Some organisations report limitations in native reporting, often supplemented via partners
+
+commercials:
+  pricing_model: Per-user subscription + optional AI tokens
+  typical_band: "£70–£150 per agent/month"
+  contract_gotchas:
+    - AI functionality often requires additional consumption tokens
+    - WEM/licensing structure can be complex across modules
+
+security:
+  residency: UK/EU hosting available
+  certifications:
+    - ISO 27001
+    - SOC 2
+    - GDPR compliant
+
+public_sector_proof:
+  - Multiple UK councils
+  - NHS use cases (patient access/contact centres)
+
+gartner_position: Leader
+notes: >
+  Very strong fit for councils needing omnichannel, CRM integration and journey analytics.
+  Deployment timelines for AI projects can be longer than expected; ensure capacity for change management.

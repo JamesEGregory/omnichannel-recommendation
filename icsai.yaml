@@ -1,0 +1,38 @@
+name: "ICS.ai"
+sweet_spot:
+  scale: "Local authorities & NHS; small to mid-sized contact centres; shared services"
+  it_capacity: "Low to medium — delivered with partner support (e.g., NTT) or light customer config"
+  industries: ["UK Local Government", "Healthcare (NHS)"]
+  strength: "Voice AI front-door/switchboard for UK councils; rapid deflection and service triage with UK-tuned intents"
+automation_depth: "Switchboard → Service Requests → Some Transactions (growing)"
+channel_coverage:
+  channels: ["Voice", "Web chat", "Email triage (where configured)"]
+  quality: "Strong phone-first automation; digital channels depend on deployment scope"
+integrations:
+  telephony:
+    pbx: "Integrates via carriers/partners (e.g., NTT) and SIP; can front legacy PBX or cloud CCaaS"
+    teams: true
+    sip_trunking: "Supported via partner SBC/carrier integration"
+  crm: ["Dynamics 365", "Salesforce (API)", "Netcall Liberty (API)"]
+  back_office:
+    connectors: ["Capita ONE", "Civica ICON", "Northgate", "Academy", "Liquidlogic", "OpenText", "Revs & Bens systems (various)"]
+    approach: "Prebuilt local-gov packs + APIs; integrates to council line-of-business via partner plays and low-code"
+wem_analytics:
+  native: "Bot/IVR analytics, call outcomes, containment; exports to BI"
+  gaps: ["Relies on underlying CCaaS for full WEM/QA/WFM"]
+commercials:
+  model: "Subscription per-channel/volume; implementation via partner"
+  price_band: "Typically lower than enterprise CCaaS; priced by usage/scope"
+  gotchas: ["Scope alignment critical; ensure exception handling and accessibility (AA compliance)"]
+security_sovereignty:
+  residency: ["UK"]
+  certifications: ["Cyber Essentials Plus", "GDPR; PSN-aligned hosting via partners"]
+public_sector_proof:
+  examples: ["Telford & Wrekin ('Ask Tom')", "Multiple English councils (switchboard/voice deflection)"]
+  notes: "Very strong fit for councils prioritising phone containment and fast time-to-value"
+gartner_position:
+  quadrant: "Not in CCaaS MQ (specialist AI/voice front door)"
+  ability_to_execute: "High in UK Local Gov"
+  completeness_of_vision: "Focused"
+last_updated: "2025-10-01"
+source: ["ICS.ai case studies", "NTT partnership materials", "UK council references"]

@@ -1,0 +1,38 @@
+name: "Vonage Contact Center"
+sweet_spot:
+  scale: "Midmarket (under 300 agents) but scalable; Salesforce-centric deployments"
+  it_capacity: "Low to medium — straightforward admin, particularly for Salesforce estates"
+  industries: ["Public sector midmarket", "Education", "Financial services"]
+  strength: "Tight Salesforce integration, UCaaS + CPaaS bundling, good AI roadmap"
+automation_depth: "Switchboard → Service Requests; Transactions via Salesforce extensions"
+channel_coverage:
+  channels: ["Voice", "Chat", "Email", "Social", "SMS"]
+  quality: "Strong Salesforce-embedded experience; solid voice + digital"
+integrations:
+  telephony:
+    pbx: "Cloud-native; can overlay Teams or replace legacy PBX"
+    teams: true
+    sip_trunking: "Supported through Vonage CPaaS / SBC options"
+  crm: ["Salesforce (best fit)", "Dynamics 365", "ServiceNow"]
+  back_office:
+    connectors: ["Capita ONE", "Civica ICON", "Northgate", "Academy"]
+    approach: "APIs; often via Salesforce middleware for orchestration"
+wem_analytics:
+  native: "Basic QA, recording, analytics; WFM via partners"
+  gaps: ["Advanced reporting sometimes requires external BI"]
+commercials:
+  model: "Per-agent subscription + CPaaS usage"
+  price_band: "£45–£90 per agent/month typical"
+  gotchas: ["Heavily Salesforce-optimised; non-SF estates may need more integration effort"]
+security_sovereignty:
+  residency: ["UK/EU data centres"]
+  certifications: ["ISO27001", "GDPR"]
+public_sector_proof:
+  examples: ["UK councils using Salesforce CRM", "Education & healthcare midmarket"]
+  notes: "Great fit if Salesforce is core platform; otherwise, integration may add cost"
+gartner_position:
+  quadrant: "Niche Player (2025 MQ)"
+  ability_to_execute: "Medium"
+  completeness_of_vision: "Medium"
+last_updated: "2025-10-01"
+source: ["Gartner MQ 2025", "Vonage Salesforce AppExchange", "G-Cloud listings"]
