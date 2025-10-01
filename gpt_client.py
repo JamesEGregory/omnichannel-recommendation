@@ -28,7 +28,7 @@ def get_recommendation(responses: dict) -> dict:
     """
 
     completion = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-5",
         messages=[
             {"role": "system", "content": "You are a helpful assistant for council tech selection."},
             {"role": "user", "content": prompt}
