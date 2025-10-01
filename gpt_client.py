@@ -28,12 +28,12 @@ def get_recommendation(responses: dict) -> dict:
     """
 
     completion = client.chat.completions.create(
-        model="gpt-5",
+        model="gpt-4-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful assistant for council tech selection."},
             {"role": "user", "content": prompt}
         ],
-        temperature=0.3,
+        temperature=1,
     )
 
     text = completion.choices[0].message.content
