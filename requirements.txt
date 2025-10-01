@@ -2,3 +2,4 @@ streamlit
 pyyaml
 openai
 python-dotenv
+# force rebuild
