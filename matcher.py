@@ -28,6 +28,12 @@ def match_vendors(responses):
 
     # Load vendor data once per run
     vendors = load_vendors()
+
+    # 🔍 Debug prints
+    print(">>> RESPONSES:", responses)
+    sample_items = list(vendors.items())[:2]
+    print(">>> VENDOR DATA SAMPLE:", sample_items)
+
     scores = []
 
     for vendor_name, data in vendors.items():
