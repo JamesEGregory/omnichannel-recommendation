@@ -1,1 +1,46 @@
+name: ICS.ai
+sweet_spot: small-medium
+industries:
+  - local government
+  - healthcare
+it_capacity: medium
+main_strength: Strong Microsoft-native conversational AI, good fit for councils.
+
+automation_depth: transactions
+channels:
+  coverage:
+    - webchat
+    - voice
+    - whatsapp
+    - email
+  quality: high
+
+integrations:
+  telephony:
+    pbx_teams: Teams-native
+  crm:
+    - Dynamics 365
+  back_office:
+    approach: API and RPA connectors
+    connectors:
+      - Civica
+      - Capita ONE
+      - Firmstep
+  wem_analytics:
+    native: moderate
+    gaps: workforce engagement usually third party
+
+commercials:
+  pricing_model: per-agent + bot licences
+  typical_band: medium
+
+security:
+  residency: UK Azure
+  certifications:
+    - ISO 27001
+    - NHS DSP Toolkit
+
+public_sector_proof:
+  - Multiple UK councils
+  - NHS trusts for patient access bots
 
