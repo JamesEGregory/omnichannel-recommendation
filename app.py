@@ -22,14 +22,14 @@ responses = {}
 
 for q in questionnaire:
     qid = q["id"]
-    qlabel = q["label"]
+    qlabel = q["text"]
 
     if q.get("type") == "multiselect":
-        responses[qid] = st.multiselect(qlabel, q["options"])
+        responses[qid] = st.multiselect(qtext, q["options"])
     elif q.get("type") == "select":
-        responses[qid] = st.selectbox(qlabel, [""] + q["options"])  # allow blank
+        responses[qid] = st.selectbox(qtext, [""] + q["options"])  # allow blank
     else:
-        responses[qid] = st.text_input(qlabel)
+        responses[qid] = st.text_input(text)
 
 # -----------------------------------------
 # Recommendation trigger
