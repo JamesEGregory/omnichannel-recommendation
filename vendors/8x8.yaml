@@ -1,1 +1,49 @@
+name: 8x8
+sweet_spot: small-medium
+industries:
+  - local government
+  - midmarket
+it_capacity: low-medium
+main_strength: Unified telephony and contact centre, easy to deploy and manage.
+
+automation_depth: switchboard
+channels:
+  coverage:
+    - voice
+    - sms
+    - webchat
+    - social (basic)
+  quality: medium
+
+integrations:
+  telephony:
+    pbx_teams: Native UCaaS + Teams integration
+  crm:
+    - Salesforce
+    - Dynamics 365
+    - Zendesk
+  back_office:
+    approach: Prebuilt connectors + lightweight APIs
+    connectors:
+      - limited RPA
+      - CSV/API interchange
+  wem_analytics:
+    native: basic WEM
+    gaps: analytics sophistication
+
+commercials:
+  pricing_model: per-agent
+  typical_band: low-medium
+  gotchas:
+    - scaling beyond ~300 seats can get tricky
+
+security:
+  residency: UK/EU
+  certifications:
+    - ISO 27001
+    - SOC 2
+
+public_sector_proof:
+  - Multiple UK district councils
+  - NHS primary care support hubs
 
