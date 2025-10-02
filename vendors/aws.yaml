@@ -1,1 +1,26 @@
+name: AWS
+sweet_spot: large        # e.g. small / medium / large / all
+telephony:
+  - teams
+  - sip
+automation_depth: transactions   # switchboard / service_requests / transactions / complex
+integration_strength: high       # low / medium / high
+crm_compatibility:
+  - Dynamics 365
+  - Salesforce
+  - Zendesk
+back_office_connectors:
+  - api
+  - common_council_systems
+data_residency: eu/uk
+uk_support: true
+strengths:
+  - scalable cloud AI
+  - strong integration capability
+weaknesses:
+  - requires IT maturity
+typical_cost_tiers:
+  Tier1: 30
+  Tier2: 50
+  Tier3: 80
 
