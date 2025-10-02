@@ -1,9 +1,15 @@
-name: Genesys
+name: Genesys Cloud CX
+
 sweet_spot:
-  scale: "Mid to very large, including multinational and complex deployments"
-  it_capacity: "Medium to High — suits councils with integration ambitions and some technical capability or SI support"
-  industries: ["Public sector", "Financial services", "Healthcare", "Retail", "Travel & Transport"]
-main_strength: "Deep customer journey orchestration, powerful AI and integration capabilities, strong CRM connectors"
+  scale: "Medium to large scale contact centres (100–5,000+ agents)"
+  it_capacity: "Medium to High — best for councils seeking advanced CX and analytics"
+  industries:
+    - Government
+    - Financial services
+    - Retail
+    - Utilities
+
+main_strength: "Deep omnichannel and customer journey analytics with strong enterprise integrations"
 
 automation_depth:
   switchboard: true
@@ -15,36 +21,45 @@ channels:
   voice: true
   chat: true
   email: true
-  social: ["SMS", "WhatsApp", "Facebook Messenger", "Twitter", "Instagram"]
-  notes: "Full omnichannel including social listening and engagement; rich customer journey management"
+  social:
+    - WhatsApp
+    - Facebook Messenger
+    - SMS
+  notes: "Comprehensive native omnichannel capabilities including social listening and engagement"
 
 integrations:
   telephony:
-    pbx_teams: "Strong support for SIP trunking and Microsoft Teams integration"
+    pbx_teams: "Native SIP and MS Teams integration through Direct Routing or PureCloud Voice"
   crm:
-    supported: ["Salesforce", "Dynamics 365", "ServiceNow", "Zendesk"]
-    notes: "Excellent native connectors and AppFoundry marketplace for extensions"
+    supported:
+      - Salesforce
+      - Microsoft Dynamics 365
+      - ServiceNow
+    notes: "Deep CRM integrations including journey analytics"
   back_office:
-    connectors: "APIs, AppFoundry marketplace, and RPA-adjacent workflows"
-    typical: ["Case management", "CRM", "ERP", "ServiceNow", "Housing systems"]
+    connectors:
+      - Capita
+      - Civica
+      - NEC
+      - Idox
+      - Custom APIs and middleware
+    approach: "Typically achieved via AppFoundry connectors or partner-built integrations"
 
 wem_analytics:
-  native: "Genesys Cloud CX includes WEM suite (recording, QM, scheduling, forecasting, analytics)"
-  partner: "Expansive AppFoundry ecosystem for advanced workforce and analytics extensions"
-  gaps: "Some clients report out-of-the-box reporting can lack granularity; external BI often used"
+  native: "Advanced WEM, speech analytics, journey orchestration"
+  partner: "AppFoundry marketplace offers additional analytics extensions"
+  gaps: "Out-of-the-box reporting can require tuning or add-ons"
 
 commercials:
-  model: "Per agent with AI features on consumption tokens"
-  pricing_band: "Mid to High — enterprise-grade pricing"
-  gotchas: "AI deployment can take longer than expected; careful scoping needed for cost control"
+  model: "Per agent per month plus optional consumption-based AI"
+  pricing_band: "Mid to High (£100–£180 per agent/month typical)"
+  gotchas: "AI and analytics modules often priced separately"
 
-security:
-  residency: ["UK", "EU", "Global"]
-  certifications: ["ISO 27001", "SOC 2", "GDPR compliant"]
-  notes: "Strong security model and UK data residency options for councils"
+deployment:
+  typical_timeline: "12–20 weeks for standard deployments; longer for complex AI journeys"
+  notes: "Best suited for councils ready to invest in CX transformation"
 
 public_sector_proof:
   examples:
-    - "Multiple UK local authorities have migrated from on-prem Genesys to Genesys Cloud CX"
-    - "NHS and utility sector deployments with strict data residency"
-    - "Strong SI partner network for UK government sector"
+    - "Deployed in multiple large UK councils"
+    - "Used by blue-light organisations and utilities with high service complexity"
