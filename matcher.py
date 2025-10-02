@@ -1,199 +1,121 @@
-import yaml
-import glob
-import os
+# matcher.py
+from vendor_loader import load_vendor_cards
 
-# ---------------------------------------
-# Scoring weightings by pillar
-# ---------------------------------------
+# --------------------------------------------
+# 1. Define weightings for each questionnaire field
+# --------------------------------------------
 WEIGHTS = {
-    "scale": 0.15,
-    "integration": 0.25,
-    "automation": 0.15,
-    "commercial": 0.15,
-    "channel": 0.15,
-    "deployment": 0.10,
-    "strategy": 0.05
+    "agents": 2,
+    "it_capacity": 2,
+    "channels_now": 2,
+    "telephony": 3,
+    "crm": 3,
+    "pain_points": 2,
+    "priorities": 3,
+    "budget": 3,
+    "timescale": 2,
+    "expected_spend": 3
 }
 
-# ---------------------------------------
-# Load vendor YAML files
-# ---------------------------------------
-def load_vendors():
-    vendors = []
-    for file in glob.glob(os.path.join("vendors", "*.yaml")):
-        with open(file, "r") as f:
-            vendors.append(yaml.safe_load(f))
-    return vendors
-
-
-# ---------------------------------------
-# Helper: Scale match
-# ---------------------------------------
-def score_scale(vendor, answers):
-    agents = answers.get("agents")
-    if not agents:
-        return 0
-
+# --------------------------------------------
+# 2. Helper functions
+# --------------------------------------------
+def match_scale(vendor, agents_answer):
+    """Check if vendor's sweet spot matches number of agents."""
     scale_text = vendor["sweet_spot"]["scale"].lower()
-    if "small" in scale_text and agents == "<20":
-        return 1
-    if "mid" in scale_text and agents in ["20–100", "100–300"]:
-        return 1
-    if "large" in scale_text and agents == "300+":
-        return 1
-    return 0
+    return any(keyword in scale_text for keyword in agents_answer.lower().split())
 
+def match_it_capacity(vendor, it_capacity_answer):
+    """Check if vendor matches IT capacity level."""
+    return it_capacity_answer.lower() in vendor["sweet_spot"]["it_capacity"].lower()
 
-# ---------------------------------------
-# Helper: Integration match
-# ---------------------------------------
-def score_integration(vendor, answers):
-    score = 0
-
-    # Telephony
-    tel = answers.get("telephony")
-    tel_supported = vendor.get("integrations", {}).get("telephony", {})
-    if tel and any(tel.lower() in str(v).lower() for v in tel_supported.values()):
-        score += 1
-
-    # CRM
-    crm = answers.get("crm")
-    crm_supported = vendor.get("integrations", {}).get("crm", {}).get("supported", [])
-    if crm and any(crm.lower() in c.lower() for c in crm_supported):
-        score += 1
-
-    # Back-office connectors
-    bo_systems = answers.get("back_office_systems", [])
-    vendor_bo = vendor.get("integrations", {}).get("back_office", {}).get("typical", [])
-    if bo_systems:
-        overlap = len(set(bo_systems) & set(vendor_bo))
-        if overlap > 0:
-            score += min(1, overlap / len(bo_systems))  # cap at 1
-
-    return score
-
-
-# ---------------------------------------
-# Helper: Automation depth
-# ---------------------------------------
-def score_automation(vendor, answers):
-    ambition = answers.get("automation_extent")
-    if not ambition:
-        return 0
-
-    depth = vendor.get("automation_depth", {})
-    if ambition == "Switchboard only":
-        return 1 if depth.get("switchboard") else 0
-    if ambition == "Service Requests":
-        return 1 if depth.get("service_requests") else 0
-    if ambition == "Transactions":
-        return 1 if depth.get("transactions") else 0
-    if ambition == "Complex Assessments":
-        return 1 if depth.get("complex_agentic") else 0
-    return 0
-
-
-# ---------------------------------------
-# Helper: Commercials
-# ---------------------------------------
-def score_commercial(vendor, answers):
-    budget = answers.get("budget")
-    pricing = vendor.get("commercials", {}).get("pricing_band", "").lower()
-    if not budget or not pricing:
-        return 0
-
-    budget = budget.lower()
-    if budget == "low" and "low" in pricing:
-        return 1
-    if budget == "medium" and ("low" in pricing or "mid" in pricing):
-        return 1
-    if budget == "high":
-        return 1  # assume all work for high budget
-    return 0
-
-
-# ---------------------------------------
-# Helper: Channel coverage
-# ---------------------------------------
-def score_channel(vendor, answers):
-    desired_channels = answers.get("channels_now", [])
-    if not desired_channels:
-        return 0
-
+def match_channels(vendor, selected_channels):
+    """Check if vendor supports the required channels."""
     vendor_channels = vendor.get("channels", {})
-    match_count = 0
-
-    for ch in desired_channels:
-        ch_key = ch.lower()
-        if ch_key in vendor_channels and vendor_channels[ch_key]:
-            match_count += 1
-
-    return match_count / len(desired_channels)  # proportion matched
-
-
-# ---------------------------------------
-# Helper: Deployment
-# ---------------------------------------
-def score_deployment(vendor, answers):
-    urgency = answers.get("urgency")
-    time_to_deploy = vendor.get("commercials", {}).get("time_to_deploy", "").lower()
-
-    if not urgency or not time_to_deploy:
-        return 0
-
-    if urgency == "<3 months" and "fast" in time_to_deploy:
-        return 1
-    if urgency == "3–6 months" and ("fast" in time_to_deploy or "medium" in time_to_deploy):
-        return 1
-    if urgency in ["6–12 months", "12+ months"]:
-        return 1  # any vendor works if timeline is long
-    return 0
-
-
-# ---------------------------------------
-# Helper: Strategy fit
-# ---------------------------------------
-def score_strategy(vendor, answers):
-    priorities = answers.get("priorities", [])
-    strength = vendor.get("main_strength", "").lower()
-
-    if not priorities or not strength:
-        return 0
-
     score = 0
-    for p in priorities:
-        if p.lower() in strength:
+    for ch in selected_channels:
+        if ch.lower() == "voice" and vendor_channels.get("voice"):
             score += 1
+        elif ch.lower() == "webchat" and vendor_channels.get("chat"):
+            score += 1
+        elif ch.lower() == "email" and vendor_channels.get("email"):
+            score += 1
+        elif ch.lower() in [s.lower() for s in vendor_channels.get("social", [])]:
+            score += 1
+    return score / max(1, len(selected_channels))  # normalize 0–1
 
-    return min(1, score / len(priorities))
+def match_telephony(vendor, telephony_answer):
+    """Check PBX/Teams compatibility."""
+    telephony_info = vendor.get("integrations", {}).get("telephony", {}).get("pbx_teams", "").lower()
+    return telephony_answer.lower() in telephony_info
 
+def match_crm(vendor, crm_answer):
+    """Check CRM compatibility."""
+    supported_crms = [c.lower() for c in vendor.get("integrations", {}).get("crm", {}).get("supported", [])]
+    return crm_answer.lower() in supported_crms
 
-# ---------------------------------------
-# Main: match vendors
-# ---------------------------------------
-def match_vendors(answers):
-    vendors = load_vendors()
-    scored = []
+def match_budget(vendor, budget_answer):
+    """Roughly match based on pricing_band."""
+    band = vendor.get("commercials", {}).get("pricing_band", "").lower()
+    return budget_answer.lower() in band
+
+# --------------------------------------------
+# 3. Main function to rank vendors
+# --------------------------------------------
+def rank_vendors(responses):
+    vendors = load_vendor_cards()
+    scores = []
 
     for vendor in vendors:
-        s = 0
-        s += WEIGHTS["scale"] * score_scale(vendor, answers)
-        s += WEIGHTS["integration"] * score_integration(vendor, answers)
-        s += WEIGHTS["automation"] * score_automation(vendor, answers)
-        s += WEIGHTS["commercial"] * score_commercial(vendor, answers)
-        s += WEIGHTS["channel"] * score_channel(vendor, answers)
-        s += WEIGHTS["deployment"] * score_deployment(vendor, answers)
-        s += WEIGHTS["strategy"] * score_strategy(vendor, answers)
+        vendor_name = vendor.get("name", "Unknown")
+        score = 0
+        max_score = 0
 
-        scored.append((vendor["name"], round(s, 3)))
+        # Agents / scale
+        if "agents" in responses:
+            max_score += WEIGHTS["agents"]
+            if match_scale(vendor, responses["agents"]):
+                score += WEIGHTS["agents"]
 
-    # Sort by score descending
-    scored.sort(key=lambda x: x[1], reverse=True)
+        # IT capacity
+        if "it_capacity" in responses:
+            max_score += WEIGHTS["it_capacity"]
+            if match_it_capacity(vendor, responses["it_capacity"]):
+                score += WEIGHTS["it_capacity"]
 
-    # Build justification for top vendor
-    top_vendor = scored[0][0] if scored else None
-    justification = ""
-    if top_vendor:
-        justification = f"{top_vendor} is the best fit based on your scale, integration landscape, and priorities."
+        # Channels
+        if "channels_now" in responses:
+            max_score += WEIGHTS["channels_now"]
+            score += WEIGHTS["channels_now"] * match_channels(vendor, responses["channels_now"])
 
-    return scored, justification
+        # Telephony
+        if "telephony" in responses:
+            max_score += WEIGHTS["telephony"]
+            if match_telephony(vendor, responses["telephony"]):
+                score += WEIGHTS["telephony"]
+
+        # CRM
+        if "crm" in responses:
+            max_score += WEIGHTS["crm"]
+            if match_crm(vendor, responses["crm"]):
+                score += WEIGHTS["crm"]
+
+        # Budget
+        if "budget" in responses:
+            max_score += WEIGHTS["budget"]
+            if match_budget(vendor, responses["budget"]):
+                score += WEIGHTS["budget"]
+
+        # Add future matching logic for pain_points, priorities, expected_spend, etc
+
+        # Final normalized score (0–100)
+        if max_score > 0:
+            final_score = (score / max_score) * 100
+        else:
+            final_score = 0
+
+        scores.append((vendor_name, round(final_score, 1)))
+
+    # Sort vendors by score
+    scores.sort(key=lambda x: x[1], reverse=True)
+    return scores
