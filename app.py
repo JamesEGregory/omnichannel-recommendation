@@ -1,46 +1,35 @@
 import streamlit as st
-from questionnaires import DISCOVERY, DIAGNOSTIC
+from questionnaires import DIAGNOSTIC
 from gpt_client import get_recommendation
 
 # -----------------------------------------
-# Sidebar for choosing questionnaire type
+# App header
 # -----------------------------------------
-st.sidebar.title("Settings")
-questionnaire_type = st.sidebar.radio(
-    "Choose questionnaire type:",
-    ("Discovery", "Diagnostic")
-)
-
-# Select which questionnaire to use
-if questionnaire_type == "Discovery":
-    questionnaire = DISCOVERY
-else:
-    questionnaire = DIAGNOSTIC
-
 st.title("Omnichannel Contact Centre Recommendation Tool")
 
 st.markdown("""
-This tool helps councils identify the most suitable contact centre platform based on 
-their scale, priorities, infrastructure, and channel strategy.
+This tool helps councils identify the most suitable contact centre platform 
+based on their scale, priorities, infrastructure, and channel strategy.
 """)
 
 # -----------------------------------------
-# Questionnaire rendering
+# Questionnaire rendering (DIAGNOSTIC only)
 # -----------------------------------------
-st.header(f"{questionnaire_type} Questionnaire")
+st.header("Diagnostic Questionnaire")
 
+questionnaire = DIAGNOSTIC
 responses = {}
 
 for q in questionnaire:
     qid = q["id"]
-    qtext = q["text"]
+    qlabel = q["label"]
 
-    if q.get("multi"):
-        responses[qid] = st.multiselect(qtext, q["options"])
-    elif q.get("options"):
-        responses[qid] = st.selectbox(qtext, [""] + q["options"])  # allow blank
+    if q.get("type") == "multiselect":
+        responses[qid] = st.multiselect(qlabel, q["options"])
+    elif q.get("type") == "select":
+        responses[qid] = st.selectbox(qlabel, [""] + q["options"])  # allow blank
     else:
-        responses[qid] = st.text_input(qtext)
+        responses[qid] = st.text_input(qlabel)
 
 # -----------------------------------------
 # Recommendation trigger
@@ -55,9 +44,7 @@ if st.button("Get Recommendation"):
             st.markdown(f"**{recommendation['primary_vendor']}**")
 
             if "secondary_vendor" in recommendation:
-                st.markdown(
-                    f"**Secondary option:** {recommendation['secondary_vendor']}"
-                )
+                st.markdown(f"**Secondary option:** {recommendation['secondary_vendor']}")
 
             st.subheader("Rationale")
             st.write(recommendation["justification"])
