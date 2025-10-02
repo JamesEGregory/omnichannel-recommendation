@@ -1,26 +1,54 @@
 name: AWS
-sweet_spot: large        # e.g. small / medium / large / all
-telephony:
-  - teams
-  - sip
-automation_depth: transactions   # switchboard / service_requests / transactions / complex
-integration_strength: high       # low / medium / high
-crm_compatibility:
-  - Dynamics 365
-  - Salesforce
-  - Zendesk
-back_office_connectors:
-  - api
-  - common_council_systems
-data_residency: eu/uk
-uk_support: true
-strengths:
-  - scalable cloud AI
-  - strong integration capability
-weaknesses:
-  - requires IT maturity
-typical_cost_tiers:
-  Tier1: 30
-  Tier2: 50
-  Tier3: 80
+sweet_spot: large
+industries:
+  - government
+  - enterprise
+  - regulated
+it_capacity: high
+main_strength: Highly scalable, AI-driven and flexible CCaaS platform for large/complex environments.
 
+automation_depth: transactions
+channels:
+  coverage:
+    - voice
+    - email
+    - webchat
+    - sms
+    - whatsapp
+    - social
+  quality: high
+
+integrations:
+  telephony:
+    pbx_teams: Teams Voice, SIP trunking
+  crm:
+    - Salesforce
+    - Dynamics 365
+    - ServiceNow
+    - Zendesk
+  back_office:
+    approach: API-first
+    connectors:
+      - AWS Lambda
+      - custom APIs
+      - data lake integrations
+  wem_analytics:
+    native: Contact Lens, Amazon Q
+    gaps: Reporting granularity sometimes limited
+
+commercials:
+  pricing_model: consumption
+  typical_band: high
+  gotchas:
+    - cost variability if volumes are unpredictable
+
+security:
+  residency: UK/EU options via AWS regions
+  certifications:
+    - ISO 27001
+    - SOC 2
+    - NHS DSP Toolkit (via partners)
+
+public_sector_proof:
+  - UK central government departments
+  - Multiple NHS trusts (through partners)
