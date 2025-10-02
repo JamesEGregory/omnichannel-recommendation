@@ -1,1 +1,51 @@
+name: Cognigy
+sweet_spot: medium-large
+industries:
+  - government
+  - healthcare
+  - enterprise
+it_capacity: medium-high
+main_strength: Deep conversational and agentic automation capabilities.
+
+automation_depth: complex
+channels:
+  coverage:
+    - webchat
+    - voice
+    - whatsapp
+    - sms
+    - social
+  quality: high
+
+integrations:
+  telephony:
+    pbx_teams: Connectors for SIP, Teams, AWS, Genesys
+  crm:
+    - Dynamics 365
+    - Salesforce
+    - ServiceNow
+  back_office:
+    approach: API + RPA orchestration
+    connectors:
+      - Blue Prism
+      - UiPath
+  wem_analytics:
+    native: analytics + intent reporting
+    gaps: workforce engagement is partner-based
+
+commercials:
+  pricing_model: consumption / bot MOU
+  typical_band: medium-high
+  gotchas:
+    - Often used alongside CCaaS, not standalone
+
+security:
+  residency: EU (Germany), can host UK
+  certifications:
+    - ISO 27001
+    - GDPR compliant
+
+public_sector_proof:
+  - UK councils (automation pilots)
+  - NHS chatbots
 
