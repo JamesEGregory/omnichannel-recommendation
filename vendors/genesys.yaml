@@ -1,15 +1,15 @@
 name: Genesys Cloud CX
 
 sweet_spot:
-  scale: "Medium to large scale contact centres (100–5,000+ agents)"
-  it_capacity: "Medium to High — best for councils seeking advanced CX and analytics"
+  scale: "Mid to very large contact centres (100–5,000+ agents)"
+  it_capacity: "Medium to High — best suited to councils with dedicated transformation teams"
   industries:
     - Government
-    - Financial services
-    - Retail
     - Utilities
+    - Financial services
+    - Enterprise contact centres
 
-main_strength: "Deep omnichannel and customer journey analytics with strong enterprise integrations"
+main_strength: "Deep automation and AI, wide omnichannel coverage, strong back-office integration, and scalability"
 
 automation_depth:
   switchboard: true
@@ -24,42 +24,45 @@ channels:
   social:
     - WhatsApp
     - Facebook Messenger
+    - Twitter
     - SMS
-  notes: "Comprehensive native omnichannel capabilities including social listening and engagement"
+  notes: "Market-leading omnichannel capabilities including proactive engagement and advanced routing"
 
 integrations:
   telephony:
-    pbx_teams: "Native SIP and MS Teams integration through Direct Routing or PureCloud Voice"
+    pbx_teams: "Can fully replace PBX or integrate with Microsoft Teams; supports SIP trunking and direct routing"
   crm:
     supported:
       - Salesforce
-      - Microsoft Dynamics 365
+      - Dynamics 365
+      - Zendesk
       - ServiceNow
-    notes: "Deep CRM integrations including journey analytics"
+    notes: "Deep integrations and configurable workflows for major CRMs"
   back_office:
     connectors:
-      - Capita
       - Civica
-      - NEC
-      - Idox
-      - Custom APIs and middleware
-    approach: "Typically achieved via AppFoundry connectors or partner-built integrations"
+      - Capita ONE
+      - NEC (Northgate)
+      - Liquidlogic
+      - SAP
+      - Oracle
+    approach: "Uses Genesys AppFoundry marketplace + partner-built connectors for UK council systems"
 
 wem_analytics:
-  native: "Advanced WEM, speech analytics, journey orchestration"
-  partner: "AppFoundry marketplace offers additional analytics extensions"
-  gaps: "Out-of-the-box reporting can require tuning or add-ons"
+  native: "Comprehensive WEM suite including speech/text analytics, forecasting, scheduling, QA, and agent assist"
+  partner: "Seamless integration with external BI and data lakes"
+  gaps: "Complexity and configuration overhead can be a barrier for smaller councils"
 
 commercials:
-  model: "Per agent per month plus optional consumption-based AI"
-  pricing_band: "Mid to High (£100–£180 per agent/month typical)"
-  gotchas: "AI and analytics modules often priced separately"
+  model: "Per agent per month (varies by feature bundle)"
+  pricing_band: "Mid to High (£90–£160 typical, depending on automation)"
+  gotchas: "Implementation costs can be significant for councils without mature IT"
 
 deployment:
-  typical_timeline: "12–20 weeks for standard deployments; longer for complex AI journeys"
-  notes: "Best suited for councils ready to invest in CX transformation"
+  typical_timeline: "12–24 weeks"
+  notes: "Longer deployments for complex integrations; partner-led projects common in UK public sector"
 
 public_sector_proof:
   examples:
-    - "Deployed in multiple large UK councils"
-    - "Used by blue-light organisations and utilities with high service complexity"
+    - "Used by large UK councils and government departments"
+    - "Strong presence in UK utilities and large-scale contact operations"
