@@ -1,1 +1,46 @@
+name: RingCentral
+sweet_spot: small-medium
+industries:
+  - local government
+  - SME
+it_capacity: low-medium
+main_strength: Strong UC + CC integration with solid Teams connectivity.
+
+automation_depth: service_requests
+channels:
+  coverage:
+    - voice
+    - email
+    - sms
+    - social
+  quality: medium-high
+
+integrations:
+  telephony:
+    pbx_teams: Strong Teams integration, SIP trunking
+  crm:
+    - Dynamics 365
+    - Salesforce
+  back_office:
+    approach: App gallery + APIs
+    connectors:
+      - RPA-lite integrations
+  wem_analytics:
+    native: moderate
+    gaps: advanced analytics may require third party
+
+commercials:
+  pricing_model: per-agent
+  typical_band: low-medium
+  gotchas:
+    - Some advanced features are add-ons
+
+security:
+  residency: UK/EU
+  certifications:
+    - ISO 27001
+    - SOC 2
+
+public_sector_proof:
+  - A few UK councils (esp. for telephony modernisation)
 
