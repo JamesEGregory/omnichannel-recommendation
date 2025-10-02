@@ -1,121 +1,65 @@
 # matcher.py
-from vendor_loader import load_vendor_cards
+import yaml
+
+print(">>> matcher.py loading...")
 
 # --------------------------------------------
-# 1. Define weightings for each questionnaire field
+# Try importing vendor_loader safely
 # --------------------------------------------
-WEIGHTS = {
-    "agents": 2,
-    "it_capacity": 2,
-    "channels_now": 2,
-    "telephony": 3,
-    "crm": 3,
-    "pain_points": 2,
-    "priorities": 3,
-    "budget": 3,
-    "timescale": 2,
-    "expected_spend": 3
-}
+try:
+    from vendor_loader import load_vendors
+    print(">>> vendor_loader import successful")
+except Exception as e:
+    print(f"!!! vendor_loader import failed: {e}")
+    load_vendors = None
+
 
 # --------------------------------------------
-# 2. Helper functions
+# Main matching function
 # --------------------------------------------
-def match_scale(vendor, agents_answer):
-    """Check if vendor's sweet spot matches number of agents."""
-    scale_text = vendor["sweet_spot"]["scale"].lower()
-    return any(keyword in scale_text for keyword in agents_answer.lower().split())
+def match_vendors(responses):
+    """
+    Matches council responses to vendor capabilities defined in vendors.yaml.
+    Returns a list of (vendor, score) tuples and a justification string.
+    """
+    if load_vendors is None:
+        print("⚠️ load_vendors is None — skipping vendor match")
+        return [], "Vendor data could not be loaded."
 
-def match_it_capacity(vendor, it_capacity_answer):
-    """Check if vendor matches IT capacity level."""
-    return it_capacity_answer.lower() in vendor["sweet_spot"]["it_capacity"].lower()
-
-def match_channels(vendor, selected_channels):
-    """Check if vendor supports the required channels."""
-    vendor_channels = vendor.get("channels", {})
-    score = 0
-    for ch in selected_channels:
-        if ch.lower() == "voice" and vendor_channels.get("voice"):
-            score += 1
-        elif ch.lower() == "webchat" and vendor_channels.get("chat"):
-            score += 1
-        elif ch.lower() == "email" and vendor_channels.get("email"):
-            score += 1
-        elif ch.lower() in [s.lower() for s in vendor_channels.get("social", [])]:
-            score += 1
-    return score / max(1, len(selected_channels))  # normalize 0–1
-
-def match_telephony(vendor, telephony_answer):
-    """Check PBX/Teams compatibility."""
-    telephony_info = vendor.get("integrations", {}).get("telephony", {}).get("pbx_teams", "").lower()
-    return telephony_answer.lower() in telephony_info
-
-def match_crm(vendor, crm_answer):
-    """Check CRM compatibility."""
-    supported_crms = [c.lower() for c in vendor.get("integrations", {}).get("crm", {}).get("supported", [])]
-    return crm_answer.lower() in supported_crms
-
-def match_budget(vendor, budget_answer):
-    """Roughly match based on pricing_band."""
-    band = vendor.get("commercials", {}).get("pricing_band", "").lower()
-    return budget_answer.lower() in band
-
-# --------------------------------------------
-# 3. Main function to rank vendors
-# --------------------------------------------
-def rank_vendors(responses):
-    vendors = load_vendor_cards()
+    # Load vendor data once per run
+    vendors = load_vendors()
     scores = []
 
-    for vendor in vendors:
-        vendor_name = vendor.get("name", "Unknown")
+    for vendor_name, data in vendors.items():
         score = 0
-        max_score = 0
 
-        # Agents / scale
-        if "agents" in responses:
-            max_score += WEIGHTS["agents"]
-            if match_scale(vendor, responses["agents"]):
-                score += WEIGHTS["agents"]
+        # Example 1: Automation ambition match
+        if responses.get("automation") and "automation_focus" in data:
+            if responses["automation"] in data["automation_focus"]:
+                score += 3
 
-        # IT capacity
-        if "it_capacity" in responses:
-            max_score += WEIGHTS["it_capacity"]
-            if match_it_capacity(vendor, responses["it_capacity"]):
-                score += WEIGHTS["it_capacity"]
+        # Example 2: Channel strategy match
+        if responses.get("omni") and "channel_strategy" in data:
+            if responses["omni"] == data["channel_strategy"]:
+                score += 2
 
-        # Channels
-        if "channels_now" in responses:
-            max_score += WEIGHTS["channels_now"]
-            score += WEIGHTS["channels_now"] * match_channels(vendor, responses["channels_now"])
+        # Example 3: Budget band match
+        if responses.get("budget") and "budget_band" in data:
+            if responses["budget"] == data["budget_band"]:
+                score += 1
 
-        # Telephony
-        if "telephony" in responses:
-            max_score += WEIGHTS["telephony"]
-            if match_telephony(vendor, responses["telephony"]):
-                score += WEIGHTS["telephony"]
+        if score > 0:
+            scores.append((vendor_name, score))
 
-        # CRM
-        if "crm" in responses:
-            max_score += WEIGHTS["crm"]
-            if match_crm(vendor, responses["crm"]):
-                score += WEIGHTS["crm"]
-
-        # Budget
-        if "budget" in responses:
-            max_score += WEIGHTS["budget"]
-            if match_budget(vendor, responses["budget"]):
-                score += WEIGHTS["budget"]
-
-        # Add future matching logic for pain_points, priorities, expected_spend, etc
-
-        # Final normalized score (0–100)
-        if max_score > 0:
-            final_score = (score / max_score) * 100
-        else:
-            final_score = 0
-
-        scores.append((vendor_name, round(final_score, 1)))
-
-    # Sort vendors by score
     scores.sort(key=lambda x: x[1], reverse=True)
-    return scores
+
+    if scores:
+        top_vendor, top_score = scores[0]
+        justification = (
+            f"{top_vendor} is recommended because its focus areas align most closely "
+            f"with your automation, channel strategy and budget priorities."
+        )
+    else:
+        justification = "No clear vendor match found. Please provide more information or adjust priorities."
+
+    return scores, justification
