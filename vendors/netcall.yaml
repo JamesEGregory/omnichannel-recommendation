@@ -1,9 +1,14 @@
 name: Netcall
+
 sweet_spot:
   scale: "Small to mid-size contact centres (10–300 agents), especially in UK public sector"
-  it_capacity: "Low to Medium — strong for councils with limited internal technical resource"
-  industries: ["Local government", "Healthcare", "Housing associations"]
-main_strength: "Low-code workflows, rapid deployment, good omnichannel coverage for councils"
+  it_capacity: "Low to Medium — strong fit for councils with limited internal technical resource"
+  industries:
+    - Local government
+    - Healthcare
+    - Housing associations
+
+main_strength: "Low-code workflows, rapid deployment, strong omnichannel coverage for councils"
 
 automation_depth:
   switchboard: true
@@ -15,36 +20,46 @@ channels:
   voice: true
   chat: true
   email: true
-  social: ["SMS", "Facebook Messenger"]
-  notes: "Omnichannel supported through Liberty Converse and Connect; strong voice and webchat focus"
+  social:
+    - SMS
+    - Facebook Messenger
+  notes: "Omnichannel supported through Liberty Converse and Connect; particularly strong in voice and webchat"
 
 integrations:
   telephony:
     pbx_teams: "Works with SIP-based PBXs and integrates natively with Microsoft Teams Voice"
   crm:
-    supported: ["Netcall Liberty", "Microsoft Dynamics", "Salesforce"]
-    notes: "Liberty Platform provides both CRM and workflow if needed"
+    supported:
+      - Netcall Liberty
+      - Microsoft Dynamics 365
+      - Salesforce
+    notes: "Liberty Platform can also provide CRM if none is in place"
   back_office:
-    connectors: "Pre-built adapters for common UK council systems; API and RPA options"
-    typical: ["Revenues & Benefits", "Waste", "Housing", "CRM integrations with Liberty"]
+    connectors:
+      - Capita Revenues & Benefits
+      - Civica APP / CX
+      - NEC (Northgate)
+      - Idox
+      - Waste systems (various via API)
+      - Housing management systems (various)
+    approach: "Pre-built adapters for common UK council systems plus API and RPA options"
 
 wem_analytics:
-  native: "Basic WEM & MI tools built-in; adequate for public sector"
-  partner: "Can integrate with Power BI or other BI tools"
-  gaps: "Less sophisticated journey analytics vs enterprise vendors"
+  native: "Basic WEM & MI tools built-in; sufficient for most council needs"
+  partner: "Integrates easily with Power BI or other BI tools"
+  gaps: "Less advanced journey analytics compared to enterprise players"
 
 commercials:
   model: "Per agent subscription; low-code platform priced separately"
-  pricing_band: "Low to Mid; attractive for councils"
-  gotchas: "Liberty platform modules sometimes need add-ons for advanced AI"
+  pricing_band: "Low to Mid (£60–£120 per agent/month typical)"
+  gotchas: "Additional Liberty platform modules sometimes required for advanced AI and workflow use cases"
 
-security:
-  residency: ["UK"]
-  certifications: ["Cyber Essentials", "ISO 27001"]
-  notes: "UK hosting and support; trusted supplier to many councils"
+deployment:
+  typical_timeline: "8–16 weeks depending on scope"
+  notes: "Low-code tools and pre-built council connectors can shorten delivery times"
 
 public_sector_proof:
   examples:
     - "Widely used by UK district and unitary councils"
     - "Strong in Revenues & Benefits and switchboard automation use cases"
-    - "Liberty Create adopted for low-code service digitisation"
+    - "Liberty Create used by councils for low-code service digitisation projects"
