@@ -22,7 +22,7 @@ responses = {}
 
 for q in questionnaire:
     qid = q["id"]
-    qlabel = q["label"]
+    qlabel = q.get("label") or q.get("text")
 
     if q.get("type") == "multiselect":
         responses[qid] = st.multiselect(qlabel, q["options"])
