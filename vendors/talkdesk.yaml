@@ -1,1 +1,50 @@
+name: Talkdesk
+sweet_spot: medium-large
+industries:
+  - government
+  - healthcare
+  - utilities
+it_capacity: medium-high
+main_strength: Verticalised solutions and strong integrations.
+
+automation_depth: transactions
+channels:
+  coverage:
+    - voice
+    - email
+    - webchat
+    - sms
+    - whatsapp
+    - social
+  quality: high
+
+integrations:
+  telephony:
+    pbx_teams: Teams integration + native CC
+  crm:
+    - Salesforce
+    - Dynamics 365
+    - ServiceNow
+  back_office:
+    approach: AppConnect marketplace
+    connectors:
+      - RPA tools
+      - Workflow engines
+  wem_analytics:
+    native: strong
+    gaps: geographic support can vary
+
+commercials:
+  pricing_model: per-agent
+  typical_band: medium-high
+
+security:
+  residency: EU + UK options
+  certifications:
+    - ISO 27001
+    - SOC 2
+
+public_sector_proof:
+  - NHS pilots
+  - UK councils (contact modernisation)
 
