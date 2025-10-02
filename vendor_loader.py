@@ -1,19 +1,25 @@
-# vendor_loader.py
-import yaml
 import os
+import glob
+import yaml
 
-def load_vendor_cards(file_path="vendors.yaml"):
+def load_vendor_cards(vendor_folder="."):
     """
-    Loads all vendor information from a single vendors.yaml file.
-    Returns a dictionary keyed by vendor name.
+    Loads all vendor YAML files from the given folder into a dictionary.
+    Each YAML file should define a single vendor profile.
     """
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Vendor file not found: {file_path}")
+    vendor_cards = {}
+    yaml_files = glob.glob(os.path.join(vendor_folder, "*.yaml"))
 
-    with open(file_path, "r", encoding="utf-8") as f:
-        data = yaml.safe_load(f)
+    for file_path in yaml_files:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+            if data and "name" in data:
+                vendor_name = data["name"]
+                vendor_cards[vendor_name] = data
 
-    if not isinstance(data, dict):
-        raise ValueError("vendors.yaml must contain a top-level dictionary")
+    return vendor_cards
 
-    return data
+if __name__ == "__main__":
+    # Quick check
+    cards = load_vendor_cards(".")
+    print(f"Loaded {len(cards)} vendor profiles: {list(cards.keys())}")
