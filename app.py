@@ -3,23 +3,14 @@ from questionnaires import DISCOVERY, DIAGNOSTIC
 from gpt_client import get_recommendation
 from vendor_loader import load_vendor_cards
 
-# -----------------------------
-# Load vendor YAML profiles
-# -----------------------------
-try:
-    vendors = load_vendor_cards("vendors")  # looks inside /vendors folder
-    print(f"✅ Loaded {len(vendors)} vendor profiles: {list(vendors.keys())}")
-except Exception as e:
-    print(f"❌ Failed to load vendor YAMLs: {e}")
-    vendors = {}
-
 # -----------------------------------------
 # Sidebar for choosing questionnaire type
 # -----------------------------------------
 st.sidebar.title("Settings")
 questionnaire_type = st.sidebar.radio(
     "Choose questionnaire type:",
-    ("Discovery", "Diagnostic")
+    ("Diagnostic", "Discovery"),  # ✅ Diagnostic first
+    index=0                       # ✅ Default to Diagnostic
 )
 
 # Select which questionnaire to use
@@ -28,6 +19,19 @@ if questionnaire_type == "Discovery":
 else:
     questionnaire = DIAGNOSTIC
 
+# -----------------------------------------
+# Load vendor YAMLs
+# -----------------------------------------
+try:
+    vendors = load_vendor_cards("vendors")
+    print(f"✅ Loaded {len(vendors)} vendor profiles: {list(vendors.keys())}")
+except Exception as e:
+    print(f"❌ Failed to load vendor YAMLs: {e}")
+    vendors = {}
+
+# -----------------------------------------
+# Page title and intro
+# -----------------------------------------
 st.title("Omnichannel Contact Centre Recommendation Tool")
 
 st.markdown("""
@@ -44,15 +48,14 @@ responses = {}
 
 for q in questionnaire:
     qid = q["id"]
-    qtext = q["label"]  # ✅ Important: we're using "label" now
+    qtext = q["label"]  # ✅ Using label now
 
     qtype = q.get("type", "text")
-    options = q.get("options", [])
 
     if qtype == "multiselect":
-        responses[qid] = st.multiselect(qtext, options)
+        responses[qid] = st.multiselect(qtext, q.get("options", []))
     elif qtype == "select":
-        responses[qid] = st.selectbox(qtext, [""] + options)
+        responses[qid] = st.selectbox(qtext, [""] + q.get("options", []))  # allow blank
     else:
         responses[qid] = st.text_input(qtext)
 
@@ -62,7 +65,7 @@ for q in questionnaire:
 if st.button("Get Recommendation"):
     with st.spinner("Generating recommendation..."):
         try:
-            recommendation = get_recommendation(responses, vendors)
+            recommendation = get_recommendation(responses)
             st.success("Recommendation generated successfully ✅")
 
             st.subheader("Top Vendor Recommendation")
@@ -74,12 +77,12 @@ if st.button("Get Recommendation"):
                 )
 
             st.subheader("Rationale")
-            st.write(recommendation["justification"])
+            st.write(recommendation.get("justification", "No detailed rationale returned."))
 
             if "cost_per_agent" in recommendation:
                 st.subheader("Cost Estimate")
                 st.write(f"💰 Estimated cost per agent: £{recommendation['cost_per_agent']}/month")
-                st.write(f"📊 Estimated total monthly cost: £{recommendation['total_cost']}")
+                st.write(f"📊 Estimated total monthly cost: £{recommendation.get('total_cost', 'N/A')}")
 
             if "savings" in recommendation:
                 st.write(f"💡 Estimated monthly savings: £{recommendation['savings']}")
