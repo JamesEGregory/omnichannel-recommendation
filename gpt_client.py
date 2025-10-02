@@ -1,92 +1,94 @@
+# gpt_client.py
 import os
 import json
-import yaml
 from openai import OpenAI
 from dotenv import load_dotenv
+from vendor_loader import load_vendor_cards
 
 # -----------------------------------------
-# Load environment variables (local dev)
+# Environment setup
 # -----------------------------------------
 load_dotenv()
-
-# Set up OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# -----------------------------------------
-# Load vendor profiles from unified YAML
-# -----------------------------------------
-with open("vendors.yaml", "r") as f:
-    VENDORS = yaml.safe_load(f)
-
+# Load all vendor data from vendors.yaml
+VENDORS = load_vendor_cards()
 
 # -----------------------------------------
-# Deterministic scoring logic
+# Vendor scoring function (data-driven)
 # -----------------------------------------
 def score_vendors(responses):
     """
-    Score vendors based on structured YAML attributes and questionnaire responses.
-    Returns a sorted list of (vendor_name, score).
+    Scores vendors based on simple matching rules
+    using fields from the questionnaire and vendor YAML data.
+    This can be made as sophisticated as you like.
     """
-    scored = []
+    scores = {vendor: 0 for vendor in VENDORS.keys()}
 
-    for vendor in VENDORS:
-        score = 0
+    # Automation ambition match (example)
+    automation = responses.get("automation", "")
+    for vendor, data in VENDORS.items():
+        sweet_spot = data.get("sweet_spot", {})
+        if automation and "automation" in sweet_spot:
+            if automation in sweet_spot["automation"]:
+                scores[vendor] += 3
 
-        # 1. Automation ambition alignment
-        if responses.get("automation") and responses["automation"] == vendor.get("automation_depth"):
-            score += 3
+    # Budget match (if present)
+    budget = responses.get("budget", "")
+    for vendor, data in VENDORS.items():
+        commercials = data.get("commercials", {})
+        if budget and "typical_band" in commercials:
+            if budget.lower() in [b.lower() for b in commercials["typical_band"]]:
+                scores[vendor] += 2
 
-        # 2. Scale fit (very simple match for now)
-        agent_size = responses.get("agents")
-        if agent_size and str(agent_size) in str(vendor.get("sweet_spot", {}).get("scale", "")):
-            score += 2
+    # Channel / integration alignment
+    channels = responses.get("channels_now", [])
+    if isinstance(channels, str):
+        channels = [channels]
 
-        # 3. IT capacity alignment
-        it_capacity = responses.get("it_capacity")
-        if it_capacity and it_capacity in str(vendor.get("sweet_spot", {}).get("it_capacity", "")):
-            score += 1
+    for vendor, data in VENDORS.items():
+        vendor_channels = data.get("channels", [])
+        for ch in channels:
+            if ch in vendor_channels:
+                scores[vendor] += 1
 
-        # 4. Channel strategy / omni capability
-        omni = responses.get("omni")
-        if omni and vendor.get("channel_support"):
-            if omni == "Digital-first" and "Chat" in vendor["channel_support"]:
-                score += 1
-            elif omni == "True omni-channel orchestration" and len(vendor["channel_support"]) > 3:
-                score += 2
+    # IT capacity / delivery model
+    it_capacity = responses.get("it_capacity", "")
+    for vendor, data in VENDORS.items():
+        if "it_capacity_fit" in data and it_capacity in data["it_capacity_fit"]:
+            scores[vendor] += 2
 
-        # 5. Budget match (very simplified)
-        budget = responses.get("budget")
-        if budget == "Low" and vendor.get("pricing_model") and "Consumption" in vendor["pricing_model"]:
-            score += 2
-        elif budget == "High" and vendor.get("pricing_model") and "Subscription" in vendor["pricing_model"]:
-            score += 1
+    # Integration maturity (example)
+    integration_level = responses.get("integration", "")
+    for vendor, data in VENDORS.items():
+        if "integration_fit" in data and integration_level in data["integration_fit"]:
+            scores[vendor] += 2
 
-        if score > 0:
-            scored.append((vendor["name"], score))
-
-    return sorted(scored, key=lambda x: x[1], reverse=True)
-
+    ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    ranked = [(v, s) for v, s in ranked if s > 0]
+    return ranked
 
 # -----------------------------------------
-# GPT fallback logic for low maturity / no match
+# GPT fallback if no deterministic match
 # -----------------------------------------
 def get_gpt_fallback_recommendation(responses):
     prompt = f"""
-    A UK local authority has provided the following answers about their contact centre:
-    {json.dumps(responses, indent=2)}
+    A UK local council has provided the following answers about their contact centre:
+    {responses}
 
-    No deterministic vendor scored well.
-
+    No clear vendor match was found based on the deterministic scoring.
     Recommend one or two *starter* omni-channel contact centre platforms that are:
     - Suitable for councils with low maturity
     - Cost effective
     - Easy to integrate with basic telephony
     - Scalable for future channel expansion
 
-    Return a JSON object with:
-    - primary_vendor
-    - secondary_vendor (optional)
-    - justification
+    Return the response in this JSON structure:
+    {{
+        "primary_vendor": "...",
+        "secondary_vendor": "...",
+        "justification": "..."
+    }}
     """
 
     response = client.responses.create(
@@ -98,7 +100,6 @@ def get_gpt_fallback_recommendation(responses):
     )
 
     content = response.output_text.strip()
-
     try:
         return json.loads(content)
     except Exception:
@@ -108,53 +109,43 @@ def get_gpt_fallback_recommendation(responses):
             "justification": content
         }
 
-
-# -----------------------------------------
-# Natural language justification for scored vendors
-# -----------------------------------------
-def generate_justification(primary_vendor, secondary_vendor, responses):
-    prompt = f"""
-    The top recommended vendor is {primary_vendor}.
-    Secondary option: {secondary_vendor if secondary_vendor else 'None'}.
-
-    Council characteristics:
-    {json.dumps(responses, indent=2)}
-
-    Write a concise 2–3 sentence explanation, suitable for a UK local authority audience,
-    justifying why this vendor is a good fit based on their priorities, size, and maturity.
-    """
-
-    response = client.responses.create(
-        model="gpt-4.1-mini",
-        input=[
-            {"role": "system", "content": "You are an expert in UK local government contact centre technology."},
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    return response.output_text.strip()
-
-
 # -----------------------------------------
 # Main orchestration
 # -----------------------------------------
 def get_recommendation(responses):
     ranked = score_vendors(responses)
 
-    # ✅ If no vendors matched, use GPT fallback
     if not ranked:
+        # Fallback path: no scored vendors
         return get_gpt_fallback_recommendation(responses)
 
-    # Top vendor(s)
     primary_vendor, primary_score = ranked[0]
     secondary_vendor = ranked[1][0] if len(ranked) > 1 else None
 
-    justification = generate_justification(primary_vendor, secondary_vendor, responses)
+    # Generate justification with GPT
+    justification_prompt = f"""
+    The top recommended vendor is {primary_vendor}.
+    Secondary option: {secondary_vendor if secondary_vendor else 'None'}.
+    Council characteristics: {responses}
 
-    # Simplified cost estimation (placeholder)
+    Write a concise explanation (2–3 sentences) for a local authority audience,
+    justifying why this vendor is a good fit based on their priorities.
+    """
+
+    justification_response = client.responses.create(
+        model="gpt-4.1-mini",
+        input=[
+            {"role": "system", "content": "You are an expert in UK local government contact centre technology."},
+            {"role": "user", "content": justification_prompt}
+        ]
+    )
+
+    justification = justification_response.output_text.strip()
+
+    # Placeholder cost estimation — can later use YAML values
     cost_per_agent = 75
-    total_cost = 75 * 100
-    savings = 10000
+    total_cost = 75 * 100  # placeholder for 100 agents
+    savings = 10000       # placeholder
 
     return {
         "primary_vendor": primary_vendor,
