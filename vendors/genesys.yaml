@@ -1,56 +1,50 @@
 name: Genesys
-sweet_spot: large
-industries:
-  - government
-  - utilities
-  - contact centres 300+
-it_capacity: medium-high
-main_strength: Strong omnichannel routing, journey analytics and AI innovation for large, complex deployments.
+sweet_spot:
+  scale: "Mid to very large deployments (100+ agents), complex multi-site or multi-channel environments"
+  it_capacity: "Medium to High — benefits from strong architecture and change management capabilities"
+  industries: ["Public sector", "Financial services", "Utilities", "Healthcare", "Retail"]
+main_strength: "Rich omnichannel orchestration, customer journey analytics, and enterprise-grade AI integration"
 
-automation_depth: complex
+automation_depth:
+  switchboard: true
+  service_requests: true
+  transactions: true
+  complex_agentic: true
+
 channels:
-  coverage:
-    - voice
-    - email
-    - webchat
-    - sms
-    - social
-    - whatsapp
-  quality: high
+  voice: true
+  chat: true
+  email: true
+  social: ["SMS", "WhatsApp", "Facebook Messenger", "Twitter", "Instagram"]
+  notes: "Strong native digital channel support and journey routing; social listening & engagement built in"
 
 integrations:
   telephony:
-    pbx_teams: Native PBX replacement, Teams Direct Routing
+    pbx_teams: "Strong SIP trunking support, smooth migration from on-prem Genesys or other PBX"
   crm:
-    - Dynamics 365
-    - Salesforce
-    - ServiceNow
-    - Zendesk
+    supported: ["Salesforce", "Microsoft Dynamics", "Zendesk", "ServiceNow"]
+    notes: "Deep connectors, AppFoundry marketplace for extended integrations"
   back_office:
-    approach: API + AppFoundry marketplace
-    connectors:
-      - RPA tools
-      - BPM/workflow engines
-  wem_analytics:
-    native: Good but sometimes supplemented with partners
-    gaps: Workforce forecasting for niche use cases
+    connectors: "APIs, AppFoundry pre-built connectors, or via middleware/RPA"
+    typical: ["Revs & Bens", "Housing", "Social care", "Waste", "Planning"]
+
+wem_analytics:
+  native: "Strong WEM and analytics suite; customer journey analytics is a differentiator"
+  partner: "AppFoundry marketplace extends capability"
+  gaps: "Reporting sometimes lacks out-of-the-box depth; some orgs use external BI"
 
 commercials:
-  pricing_model: per-agent with AI bundles
-  typical_band: high
-  gotchas:
-    - AI deployment timelines can stretch
+  model: "Per agent subscription + consumption tokens for AI features"
+  pricing_band: "Mid-to-high; reflects enterprise-grade capability"
+  gotchas: "AI deployments can run longer than planned; reporting add-ons may be needed"
 
 security:
-  residency: UK/EU
-  certifications:
-    - ISO 27001
-    - PCI DSS
-    - NHS DSP Toolkit (partner)
-  sovereignty_support: yes
+  residency: ["UK", "EU"]
+  certifications: ["ISO 27001", "SOC 2", "Cyber Essentials"]
+  notes: "UK hosting available; compliant with major public sector security requirements"
 
 public_sector_proof:
-  - Several UK councils (migration from on-prem)
-  - NHS service desks
-  - Central gov departments
-
+  examples:
+    - "Multiple UK councils migrating from on-prem solutions"
+    - "Used in central government contact hubs"
+    - "Deployed in NHS and emergency services contexts"
