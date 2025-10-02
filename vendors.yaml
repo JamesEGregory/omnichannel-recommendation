@@ -1,230 +1,177 @@
-- name: AWS
-  sweet_spot:
-    scale: 100+
-    it_capacity: Medium–High
-  strengths:
-    - Scalable cloud-native contact centre with deep AI/ML capability
-    - Excellent integration potential via APIs
-    - Good for councils with developer resource or SI partners
-  automation_depth: "Complex/agentic"
-  channel_support:
-    - Voice
-    - Chat
-    - Email
-    - Social/SMS
-    - Self-service
-  crm_integrations:
-    - Salesforce
-    - Zendesk
-    - Zoho
-  telephony_compatibility:
-    - Cloud-based
-    - SIP
-  back_office_connectivity: "API-first approach, good for councils with middleware or bespoke integration layers"
-  pricing_model: "Consumption (pay-per-use)"
-  uk_data_residency: true
-  support_model: "Global support, UK region available"
-  ideal_for:
-    - Cost-conscious councils scaling over time
-    - Councils with flexible architectures and IT capacity
-    - Complex automation roadmaps
+vendors:
+  AWS:
+    category: "Hyperscaler CCaaS + AI"
+    strengths:
+      - Highly scalable and modular platform
+      - Strong automation and agentic AI capabilities
+      - Extensive integration options via APIs and middleware
+    weaknesses:
+      - Can be complex to design and maintain
+      - Requires strong internal IT/developer capacity
+    best_for:
+      - Councils with high automation ambitions
+      - Councils with existing cloud skills or partners
+    telephony_compatibility: ["Teams Voice", "SIP", "BYOT", "Genesys"]
+    back_office_connectors: ["CRM", "ERP", "case management", "data platforms"]
 
-- name: Genesys
-  sweet_spot:
-    scale: 100+
-    it_capacity: Medium–High
-  strengths:
-    - Deep omni-channel orchestration and AI routing
-    - Extensive CRM and telephony compatibility
-    - Good analytics and workforce engagement management
-  automation_depth: "Complex/agentic"
-  channel_support:
-    - Voice
-    - Chat
-    - Email
-    - Social/SMS
-    - Self-service
-  crm_integrations:
-    - Salesforce
-    - Dynamics 365
-    - Zendesk
-  telephony_compatibility:
-    - SIP
-    - Microsoft Teams
-    - Legacy PBX via connectors
-  back_office_connectivity: "Broad set of pre-built connectors and middleware support"
-  pricing_model: "Subscription (per agent/month)"
-  uk_data_residency: true
-  support_model: "Global support with UK presence"
-  ideal_for:
-    - Councils pursuing digital-first strategies with complex service mix
-    - Mature automation ambitions
-    - High service volumes
+  Genesys:
+    category: "Enterprise CCaaS"
+    strengths:
+      - Deep omnichannel orchestration and routing
+      - Advanced workforce engagement and analytics
+      - Broad integration ecosystem
+    weaknesses:
+      - Higher cost tier
+      - May be overkill for small centres
+    best_for:
+      - Councils with complex service landscapes
+      - Digital-first or omni-channel strategies
+    telephony_compatibility: ["Teams Voice", "Cisco", "Avaya", "Mitel", "SIP"]
+    back_office_connectors: ["CRM", "ERP", "Dynamics 365", "Salesforce", "case management"]
 
-- name: 8x8
-  sweet_spot:
-    scale: "<100"
-    it_capacity: Low–Medium
-  strengths:
-    - Simple cloud telephony with UCaaS integration
-    - Quick to deploy, low cost
-  automation_depth: "Switchboard"
-  channel_support:
-    - Voice
-    - Chat
-    - Email
-  crm_integrations:
-    - Salesforce
-    - Zoho
-  telephony_compatibility:
-    - Cloud PBX
-    - SIP
-  back_office_connectivity: "Custom APIs, limited native connectors"
-  pricing_model: "Subscription (per agent/month)"
-  uk_data_residency: true
-  support_model: "UK support available"
-  ideal_for:
-    - Councils seeking fast, low-cost telephony upgrades
-    - Simpler estates with limited IT capacity
+  8x8:
+    category: "Mid-market CCaaS"
+    strengths:
+      - Simple deployment, good telephony-native stack
+      - Competitive pricing for smaller centres
+    weaknesses:
+      - Limited advanced automation
+      - Integration layer not as rich as enterprise players
+    best_for:
+      - Councils focused on voice and basic digital channels
+      - Budget-sensitive projects
+    telephony_compatibility: ["Native", "Teams Voice", "SIP"]
+    back_office_connectors: ["Basic CRM", "Microsoft 365"]
 
-- name: RingCentral
-  sweet_spot:
-    scale: "<100"
-    it_capacity: Low–Medium
-  strengths:
-    - UCaaS and CCaaS blend
-    - Strong Microsoft integration
-    - Good for councils modernising PBX + telephony
-  automation_depth: "Switchboard"
-  channel_support:
-    - Voice
-    - Chat
-    - Email
-    - SMS
-  crm_integrations:
-    - Salesforce
-    - HubSpot
-    - Zendesk
-  telephony_compatibility:
-    - Cloud PBX
-    - Microsoft Teams
-  back_office_connectivity: "Custom APIs"
-  pricing_model: "Subscription (per agent/month)"
-  uk_data_residency: true
-  support_model: "UK support available"
-  ideal_for:
-    - Councils upgrading telephony first
-    - Smaller operations seeking simple omni-channel
+  RingCentral:
+    category: "Mid-market CCaaS"
+    strengths:
+      - Strong telephony heritage with expanding digital channels
+      - Simple SaaS pricing and deployment
+    weaknesses:
+      - Automation and AI are maturing but not market-leading
+    best_for:
+      - Councils wanting reliable voice + incremental channel expansion
+    telephony_compatibility: ["Native", "Teams Voice", "SIP"]
+    back_office_connectors: ["Basic CRM", "Microsoft 365"]
 
-- name: Netcall
-  sweet_spot:
-    scale: "<300"
-    it_capacity: Medium
-  strengths:
-    - Public sector focused
-    - Strong case management + telephony integration
-    - No-code workflow builder
-  automation_depth: "Service requests"
-  channel_support:
-    - Voice
-    - Chat
-    - Email
-    - Social/SMS
-  crm_integrations:
-    - Dynamics 365
-    - Salesforce
-    - Netcall Liberty
-  telephony_compatibility:
-    - SIP
-    - TDM
-  back_office_connectivity: "Good for Revenues & Benefits, Waste, and other core council systems"
-  pricing_model: "Subscription (per agent/month)"
-  uk_data_residency: true
-  support_model: "UK-based support"
-  ideal_for:
-    - Councils modernising telephony and workflows simultaneously
-    - Medium maturity, low-code friendly teams
+  Netcall:
+    category: "Public Sector Specialist"
+    strengths:
+      - Good workflow and service request capabilities
+      - Integrates well with legacy council systems
+      - Familiar to many UK councils
+    weaknesses:
+      - Less advanced omnichannel orchestration
+    best_for:
+      - Councils modernising from legacy CRM / telephony
+    telephony_compatibility: ["Avaya", "Cisco", "Mitel", "Teams Voice"]
+    back_office_connectors: ["Civica", "Capita ONE", "Liberty", "Revenues & Benefits"]
 
-- name: Cognigy
-  sweet_spot:
-    scale: 100+
-    it_capacity: Medium–High
-  strengths:
-    - Strong conversational AI and automation capability
-    - Good channel coverage
-    - Works well as AI orchestration layer
-  automation_depth: "Complex/agentic"
-  channel_support:
-    - Voice
-    - Chat
-    - Email
-    - Social/SMS
-  crm_integrations:
-    - Salesforce
-    - Dynamics 365
-    - Zendesk
-  telephony_compatibility:
-    - Cloud PBX
-    - API connectors to legacy PBX
-  back_office_connectivity: "API-driven, integrates with modern systems well"
-  pricing_model: "Subscription (per agent/month)"
-  uk_data_residency: true
-  support_model: "Partner-led in UK"
-  ideal_for:
-    - Councils pursuing advanced automation
-    - Layering AI over existing telephony
+  Cognigy:
+    category: "Conversational AI / Agentic Layer"
+    strengths:
+      - Excellent for complex assessments and agentic workflows
+      - Flexible API-first approach
+    weaknesses:
+      - Requires integration with CCaaS platform
+    best_for:
+      - Councils with high automation ambitions
+      - Layering intelligence onto existing platforms
+    telephony_compatibility: ["Teams Voice", "Genesys", "SIP"]
+    back_office_connectors: ["CRM", "ERP", "case management"]
 
-- name: ICS.ai
-  sweet_spot:
-    scale: "<300"
-    it_capacity: Low–Medium
-  strengths:
-    - Local gov-focused AI vendor
-    - Strong in voice automation / switchboard automation
-    - Good fit for councils starting AI journey
-  automation_depth: "Service requests"
-  channel_support:
-    - Voice
-    - Chat
-  crm_integrations:
-    - Dynamics 365
-    - Salesforce
-  telephony_compatibility:
-    - Cisco PBX
-    - Avaya PBX
-  back_office_connectivity: "Pre-built connectors for common public sector systems"
-  pricing_model: "Subscription (per agent/month)"
-  uk_data_residency: true
-  support_model: "UK-based support"
-  ideal_for:
-    - Councils starting with telephony automation
-    - Public sector-focused estates
+  ICS.ai:
+    category: "Conversational AI (Public Sector)"
+    strengths:
+      - Deep domain experience in UK councils
+      - Pre-built service templates for switchboard and services
+    weaknesses:
+      - Not a full CCaaS platform — needs telephony integration
+    best_for:
+      - Councils starting automation journeys
+      - Quick wins on switchboard / service triage
+    telephony_compatibility: ["Teams Voice", "SIP"]
+    back_office_connectors: ["Civica", "Capita ONE", "Line of Business apps"]
 
-- name: Five9
-  sweet_spot:
-    scale: 100+
-    it_capacity: Medium–High
-  strengths:
-    - Strong cloud contact centre functionality
-    - AI augmentation available
-    - Good for hybrid estates
-  automation_depth: "Transactions"
-  channel_support:
-    - Voice
-    - Chat
-    - Email
-    - Social/SMS
-  crm_integrations:
-    - Salesforce
-    - Zendesk
-  telephony_compatibility:
-    - Cloud PBX
-    - SIP
-  back_office_connectivity: "API integrations with major systems"
-  pricing_model: "Subscription (per agent/month)"
-  uk_data_residency: true
-  support_model: "Global with UK presence"
-  ideal_for:
-    - Councils scaling modern contact centres
-    - Hybrid telephony environments
+  Microsoft:
+    category: "Platform / UCaaS"
+    strengths:
+      - Pervasive in councils (Teams + D365)
+      - Easy telephony extension via Direct Routing
+    weaknesses:
+      - Limited native CCaaS features — usually needs partner
+    best_for:
+      - Councils already invested in Microsoft stack
+    telephony_compatibility: ["Teams Voice", "SIP"]
+    back_office_connectors: ["Dynamics 365", "SharePoint", "Power Platform"]
 
+  Cisco:
+    category: "Legacy / Hybrid"
+    strengths:
+      - Established PBX and contact centre capabilities
+    weaknesses:
+      - Legacy stack can be costly to modernise
+      - Limited native digital channels
+    best_for:
+      - Councils with existing Cisco PBX looking for hybrid solutions
+    telephony_compatibility: ["Cisco", "SIP"]
+    back_office_connectors: ["Basic CRM"]
+
+  Content Guru:
+    category: "Public Sector CCaaS"
+    strengths:
+      - Strong presence in UK public sector
+      - Good resilience, flexible deployment
+    weaknesses:
+      - Less automation compared to Cognigy/AWS
+    best_for:
+      - Councils needing reliable omnichannel with UK hosting
+    telephony_compatibility: ["Avaya", "Cisco", "Mitel", "Teams Voice"]
+    back_office_connectors: ["Civica", "Capita ONE", "CRM"]
+
+  Five9:
+    category: "Global CCaaS"
+    strengths:
+      - Mature cloud contact centre with good digital routing
+      - Growing UK support
+    weaknesses:
+      - Smaller UK ecosystem vs Genesys
+    best_for:
+      - Councils wanting enterprise CCaaS without Genesys complexity
+    telephony_compatibility: ["SIP", "Teams Voice"]
+    back_office_connectors: ["CRM", "Salesforce", "Dynamics 365"]
+
+  Talkdesk:
+    category: "Modern CCaaS"
+    strengths:
+      - Fast to deploy, good AI features
+      - Strong app marketplace
+    weaknesses:
+      - Less proven in UK local gov
+    best_for:
+      - Councils with digital-first ambitions
+    telephony_compatibility: ["SIP", "Teams Voice"]
+    back_office_connectors: ["Salesforce", "Dynamics 365", "CRM"]
+
+  Vonage:
+    category: "Digital-first CCaaS"
+    strengths:
+      - Simple, API-driven, affordable
+    weaknesses:
+      - Limited enterprise capabilities
+    best_for:
+      - Councils wanting lightweight multichannel solutions
+    telephony_compatibility: ["SIP", "Teams Voice"]
+    back_office_connectors: ["Basic CRM"]
+
+  Zoom:
+    category: "Emerging CCaaS"
+    strengths:
+      - Easy to deploy, integrates well with Teams
+    weaknesses:
+      - Early stage CCaaS feature set
+    best_for:
+      - Councils with light requirements, focusing on quick wins
+    telephony_compatibility: ["Zoom Phone", "SIP", "Teams Voice"]
+    back_office_connectors: ["Microsoft 365", "Basic CRM"]
