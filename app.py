@@ -44,7 +44,7 @@ responses = {}
 
 for q in questionnaire:
     qid = q["id"]
-    qtext = q["label"]  # ✅ Important: we're using "label" now
+    qtext = q["text"]  # ✅ Important: we're using "label" now
 
     qtype = q.get("type", "text")
     options = q.get("options", [])
