@@ -1,51 +1,49 @@
 name: Cognigy
-sweet_spot: medium-large
-industries:
-  - government
-  - healthcare
-  - enterprise
-it_capacity: medium-high
-main_strength: Deep conversational and agentic automation capabilities.
+sweet_spot:
+  scale: "Mid to very large deployments; suitable for councils wanting deep automation and AI orchestration"
+  it_capacity: "Medium to High — best for organisations with clear automation strategy or external delivery partners"
+  industries: ["Public sector", "Utilities", "Financial services", "Airlines", "Retail"]
+main_strength: "Deep conversational AI and agentic workflow orchestration across multiple channels"
 
-automation_depth: complex
+automation_depth:
+  switchboard: true
+  service_requests: true
+  transactions: true
+  complex_agentic: true
+
 channels:
-  coverage:
-    - webchat
-    - voice
-    - whatsapp
-    - sms
-    - social
-  quality: high
+  voice: true
+  chat: true
+  email: true
+  social: ["WhatsApp", "Messenger", "SMS", "Instagram", "Twitter", "Webchat"]
+  notes: "Strong omnichannel orchestration, capable of complex multi-turn conversations and intelligent routing"
 
 integrations:
   telephony:
-    pbx_teams: Connectors for SIP, Teams, AWS, Genesys
+    pbx_teams: "Integrates with major PBXs and Microsoft Teams via APIs and connectors"
   crm:
-    - Dynamics 365
-    - Salesforce
-    - ServiceNow
+    supported: ["Salesforce", "Microsoft Dynamics", "Zendesk", "ServiceNow"]
+    notes: "Native connectors and API-first approach for integration"
   back_office:
-    approach: API + RPA orchestration
-    connectors:
-      - Blue Prism
-      - UiPath
-  wem_analytics:
-    native: analytics + intent reporting
-    gaps: workforce engagement is partner-based
+    connectors: "API-driven; can orchestrate multiple back-office systems in a single interaction"
+    typical: ["Revenues & Benefits", "Housing", "Social care", "Planning", "Waste"]
+
+wem_analytics:
+  native: "Strong conversation analytics, intent recognition, and flow reporting"
+  partner: "Integrates with external BI or data platforms easily"
+  gaps: "Does not provide full contact centre WEM suite — typically paired with CCaaS platform"
 
 commercials:
-  pricing_model: consumption / bot MOU
-  typical_band: medium-high
-  gotchas:
-    - Often used alongside CCaaS, not standalone
+  model: "Usage-based (conversation volume) + platform subscription"
+  pricing_band: "Mid-to-High — reflects AI capabilities"
+  gotchas: "Needs a clear delivery strategy; can be overkill if automation maturity is low"
 
 security:
-  residency: EU (Germany), can host UK
-  certifications:
-    - ISO 27001
-    - GDPR compliant
+  residency: ["UK", "EU"]
+  certifications: ["ISO 27001", "SOC 2"]
+  notes: "Available as SaaS or private cloud; UK data residency possible through partners"
 
 public_sector_proof:
-  - UK councils (automation pilots)
-  - NHS chatbots
-
+  examples:
+    - "Used by several UK local authorities for voicebot and chatbot services"
+    - "Deployed in German municipalities for end-to-end
