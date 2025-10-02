@@ -1,9 +1,15 @@
 name: Talkdesk
+
 sweet_spot:
-  scale: "Mid to large contact centres (50–1000+ agents), especially those wanting modern CX without heavy IT overhead"
-  it_capacity: "Low to Medium — Talkdesk is designed to be easy to deploy and manage"
-  industries: ["Public sector", "Healthcare", "Retail", "Financial services"]
-main_strength: "Modern cloud-native CCaaS with strong omnichannel capabilities, good AI features, and rapid deployment"
+  scale: "Mid to large contact centres (100–2,000+ agents)"
+  it_capacity: "Medium to High — best for councils with strategic channel transformation plans"
+  industries:
+    - Government
+    - Healthcare
+    - Banking and insurance
+    - Retail
+
+main_strength: "Strong vertical market packages, preconfigured workflows, and AI capabilities"
 
 automation_depth:
   switchboard: true
@@ -15,36 +21,44 @@ channels:
   voice: true
   chat: true
   email: true
-  social: ["SMS", "WhatsApp", "Facebook Messenger", "Twitter"]
-  notes: "Omnichannel natively supported; excellent routing and workflow capabilities"
+  social:
+    - WhatsApp
+    - Facebook Messenger
+    - SMS
+  notes: "Rich omnichannel capabilities including packaged AI workflows for government services"
 
 integrations:
   telephony:
-    pbx_teams: "Native cloud telephony; integrates with Teams and SIP trunks"
+    pbx_teams: "Integrates with Microsoft Teams and SIP trunking; can replace legacy PBX entirely"
   crm:
-    supported: ["Salesforce", "Dynamics", "Zendesk", "ServiceNow"]
-    notes: "Pre-built connectors and open APIs available"
+    supported:
+      - Salesforce
+      - Microsoft Dynamics 365
+      - ServiceNow
+    notes: "Deep vertical use cases with Salesforce and Dynamics"
   back_office:
-    connectors: "Pre-built connectors and APIs for common enterprise and public sector systems"
-    typical: ["CRM", "Revenues & Benefits", "Housing", "Case management"]
+    connectors:
+      - Civica
+      - Capita
+      - NEC (Northgate)
+      - Idox
+    approach: "Preconfigured integrations available; additional connectors typically partner-built"
 
 wem_analytics:
-  native: "Talkdesk AI-powered analytics and WEM suite included"
-  partner: "Integrates easily with BI platforms like Power BI"
-  gaps: "Some advanced custom analytics may require external tools"
+  native: "Comprehensive WEM suite and AI studio"
+  partner: "Supports Power BI and custom analytics integrations"
+  gaps: "Some councils report slower remote technical support"
 
 commercials:
-  model: "Per agent subscription"
-  pricing_band: "Mid — offers strong value for capabilities"
-  gotchas: "Some advanced automation features may require higher tiers"
+  model: "Per agent per month"
+  pricing_band: "Mid to High (£90–£160 per agent/month typical)"
+  gotchas: "Some custom development needed where connectors aren’t prebuilt"
 
-security:
-  residency: ["UK", "EU"]
-  certifications: ["ISO 27001", "SOC 2", "Cyber Essentials"]
-  notes: "UK data residency supported; Talkdesk is PSN and NHS DSPT aligned"
+deployment:
+  typical_timeline: "12–20 weeks"
+  notes: "Strong partner ecosystem for UK public sector deployments"
 
 public_sector_proof:
   examples:
-    - "Used by several UK councils for modernising contact centres"
-    - "Adopted by NHS and education institutions for cloud migration"
-    - "Strong partner ecosystem for public sector implementation"
+    - "Used by UK councils for government service templates"
+    - "Adopted in several European municipalities"
