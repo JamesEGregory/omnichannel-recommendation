@@ -1,9 +1,9 @@
 name: AWS
 sweet_spot:
-  scale: "Mid to very large (100+ agents), but can flex smaller"
-  it_capacity: "Medium to High — benefits from in-house or partner AWS skills"
-  industries: ["Public sector", "Enterprise", "Retail", "Financial services"]
-main_strength: "Highly scalable cloud-native platform with deep AI/automation capabilities"
+  scale: "Small to very large deployments; best for councils or partners comfortable with cloud-native architectures"
+  it_capacity: "Medium to High — suits organisations with strong IT/development or trusted partners"
+  industries: ["Public sector", "Financial services", "Utilities", "Retail", "Travel"]
+main_strength: "Highly flexible, scalable, and cost-effective contact centre platform (Amazon Connect) with deep AI/ML integration"
 
 automation_depth:
   switchboard: true
@@ -15,36 +15,36 @@ channels:
   voice: true
   chat: true
   email: true
-  social: ["WhatsApp Business", "SMS", "Facebook Messenger"]
-  notes: "Omnichannel via Amazon Connect + Lex bots; strong WhatsApp support"
+  social: ["SMS", "WhatsApp", "Custom via APIs"]
+  notes: "Omnichannel achieved through native services + API extensions; extremely flexible"
 
 integrations:
   telephony:
-    pbx_teams: "Cloud-native, supports SIP trunking; can integrate with legacy PBX via SBC"
+    pbx_teams: "BYO SIP trunking; can integrate with existing PBXs or Teams through SBCs"
   crm:
-    supported: ["Salesforce", "Zendesk", "Zoho", "ServiceNow"]
-    notes: "Pre-built connectors; extensible via APIs"
+    supported: ["Salesforce", "Dynamics", "Zendesk", "ServiceNow", "Custom"]
+    notes: "Connect Streams API enables deep custom integrations"
   back_office:
-    connectors: "Via API Gateway, Lambda, or RPA-adjacent integrations"
-    typical: ["Revs & Bens", "Waste", "Social care", "Custom APIs"]
+    connectors: "APIs, Lambda functions, data lakes; can integrate deeply with back-office systems"
+    typical: ["Revenues & Benefits", "Housing", "Waste", "Planning", "Social Care (via APIs or data lakes)"]
 
 wem_analytics:
-  native: "Contact Lens for conversation analytics, real-time dashboards"
-  partner: "Optional external BI (e.g., QuickSight, Power BI)"
-  gaps: "Some customers export data for deeper reporting"
+  native: "Contact Lens for analytics, transcription, sentiment analysis, AI routing"
+  partner: "Integrates with third-party WEM or BI platforms"
+  gaps: "Requires technical expertise to configure advanced reporting and orchestration"
 
 commercials:
-  model: "Consumption-based (per minute/transaction), not per agent"
-  pricing_band: "Typically low-to-mid, but variable depending on usage"
-  gotchas: "Costs can be unpredictable without careful volume modelling"
+  model: "Pay-as-you-go usage model + optional service subscriptions"
+  pricing_band: "Low-to-Mid; highly cost-efficient at scale"
+  gotchas: "Requires solution design; may need partner involvement for rapid delivery"
 
 security:
   residency: ["UK", "EU"]
-  certifications: ["ISO 27001", "Cyber Essentials", "GDPR-compliant"]
-  notes: "Strong UK data residency options via AWS London region"
+  certifications: ["ISO 27001", "SOC 2", "Cyber Essentials", "NHS DSPT"]
+  notes: "UK region hosting; widely approved for UK public sector workloads"
 
 public_sector_proof:
   examples:
-    - "Several UK local authorities using Amazon Connect for voice + digital"
-    - "NHS 111 call automation pilots"
-    - "Central gov departments for scalable helplines"
+    - "Used by DWP for large-scale contact centre workloads"
+    - "Adopted by local authorities for flexible, low-cost contact handling"
+    - "Popular for switchboard automation and scalable service desk deployments"
