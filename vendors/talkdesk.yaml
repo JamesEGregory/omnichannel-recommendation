@@ -1,50 +1,50 @@
 name: Talkdesk
-sweet_spot: medium-large
-industries:
-  - government
-  - healthcare
-  - utilities
-it_capacity: medium-high
-main_strength: Verticalised solutions and strong integrations.
+sweet_spot:
+  scale: "Mid to large contact centres (50–1000+ agents), especially those wanting modern CX without heavy IT overhead"
+  it_capacity: "Low to Medium — Talkdesk is designed to be easy to deploy and manage"
+  industries: ["Public sector", "Healthcare", "Retail", "Financial services"]
+main_strength: "Modern cloud-native CCaaS with strong omnichannel capabilities, good AI features, and rapid deployment"
 
-automation_depth: transactions
+automation_depth:
+  switchboard: true
+  service_requests: true
+  transactions: true
+  complex_agentic: true
+
 channels:
-  coverage:
-    - voice
-    - email
-    - webchat
-    - sms
-    - whatsapp
-    - social
-  quality: high
+  voice: true
+  chat: true
+  email: true
+  social: ["SMS", "WhatsApp", "Facebook Messenger", "Twitter"]
+  notes: "Omnichannel natively supported; excellent routing and workflow capabilities"
 
 integrations:
   telephony:
-    pbx_teams: Teams integration + native CC
+    pbx_teams: "Native cloud telephony; integrates with Teams and SIP trunks"
   crm:
-    - Salesforce
-    - Dynamics 365
-    - ServiceNow
+    supported: ["Salesforce", "Dynamics", "Zendesk", "ServiceNow"]
+    notes: "Pre-built connectors and open APIs available"
   back_office:
-    approach: AppConnect marketplace
-    connectors:
-      - RPA tools
-      - Workflow engines
-  wem_analytics:
-    native: strong
-    gaps: geographic support can vary
+    connectors: "Pre-built connectors and APIs for common enterprise and public sector systems"
+    typical: ["CRM", "Revenues & Benefits", "Housing", "Case management"]
+
+wem_analytics:
+  native: "Talkdesk AI-powered analytics and WEM suite included"
+  partner: "Integrates easily with BI platforms like Power BI"
+  gaps: "Some advanced custom analytics may require external tools"
 
 commercials:
-  pricing_model: per-agent
-  typical_band: medium-high
+  model: "Per agent subscription"
+  pricing_band: "Mid — offers strong value for capabilities"
+  gotchas: "Some advanced automation features may require higher tiers"
 
 security:
-  residency: EU + UK options
-  certifications:
-    - ISO 27001
-    - SOC 2
+  residency: ["UK", "EU"]
+  certifications: ["ISO 27001", "SOC 2", "Cyber Essentials"]
+  notes: "UK data residency supported; Talkdesk is PSN and NHS DSPT aligned"
 
 public_sector_proof:
-  - NHS pilots
-  - UK councils (contact modernisation)
-
+  examples:
+    - "Used by several UK councils for modernising contact centres"
+    - "Adopted by NHS and education institutions for cloud migration"
+    - "Strong partner ecosystem for public sector implementation"
