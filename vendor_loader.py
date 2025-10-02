@@ -2,12 +2,12 @@
 import os
 import yaml
 
-def load_vendor_cards(vendors_folder: str = "vendors"):
+def load_vendors(vendors_folder: str = "vendors"):
     """
-    Load all vendor YAML files from the given folder and return as a list of dicts.
-    Each file must contain valid YAML following the agreed vendor structure.
+    Load all vendor YAML files from the given folder and return a dictionary
+    keyed by vendor name (taken from the 'name' field inside each YAML file).
     """
-    vendors = []
+    vendors = {}
 
     if not os.path.exists(vendors_folder):
         raise FileNotFoundError(f"Vendors folder '{vendors_folder}' not found")
@@ -18,8 +18,10 @@ def load_vendor_cards(vendors_folder: str = "vendors"):
             with open(filepath, "r", encoding="utf-8") as f:
                 try:
                     data = yaml.safe_load(f)
-                    if data:  # ignore empty files
-                        vendors.append(data)
+                    if data and "name" in data:
+                        vendors[data["name"]] = data
+                    else:
+                        print(f"⚠️ {filename} has no 'name' field — skipped")
                 except yaml.YAMLError as e:
                     print(f"⚠️ Failed to parse {filename}: {e}")
 
