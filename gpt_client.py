@@ -1,21 +1,22 @@
 import os
+import json
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# Load environment variables (mainly for local dev — Railway will use env vars)
+# Load environment variables (local dev)
 load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+
 # -----------------------------------------
-# Primary scoring (placeholder or your own scoring function)
+# Primary scoring (simplified example)
 # -----------------------------------------
 def score_vendors(responses):
     """
     Returns a list of (vendor_name, score) tuples, sorted by score desc.
-    This should be replaced with your actual vendor scoring logic.
+    Replace this with your full YAML-driven scoring if needed.
     """
-    # Example: super simple scoring stub
     scores = {
         "AWS": 0,
         "Genesys": 0,
@@ -26,7 +27,7 @@ def score_vendors(responses):
         "ICS.ai": 0,
     }
 
-    # Sample influence: automation ambition
+    # Example influence: automation ambition
     automation = responses.get("automation", "")
     if automation == "Switchboard":
         scores["8x8"] += 2
@@ -46,20 +47,15 @@ def score_vendors(responses):
         scores["Genesys"] += 2
         scores["Cognigy"] += 2
 
-    # Return sorted vendor list
     ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    # Filter out zero scores
     ranked = [(v, s) for v, s in ranked if s > 0]
     return ranked
 
 
 # -----------------------------------------
-# GPT fallback prompt for low-maturity / no clear match
+# GPT fallback for low maturity / no match
 # -----------------------------------------
 def get_gpt_fallback_recommendation(responses):
-    """
-    Uses GPT to suggest starter vendors when deterministic scoring yields no match.
-    """
     prompt = f"""
     A UK local council has provided the following answers about their contact centre:
     {responses}
@@ -82,21 +78,23 @@ def get_gpt_fallback_recommendation(responses):
 
     response = client.responses.create(
         model="gpt-4.1-mini",
-        reasoning={"effort": "medium"},
         input=[
             {"role": "system", "content": "You are an expert in UK local government contact centre technology."},
             {"role": "user", "content": prompt}
         ]
     )
 
-    # Try to parse the structured JSON
+    content = response.output_text.strip()
+
+    # Try to parse JSON; if fail, return structured fallback
     try:
-        content = response.output_text.strip()
-        import json
         return json.loads(content)
     except Exception:
-        # If GPT returns something slightly off, just return the raw text
-        return {"primary_vendor": None, "justification": content}
+        return {
+            "primary_vendor": None,
+            "secondary_vendor": None,
+            "justification": content
+        }
 
 
 # -----------------------------------------
@@ -109,11 +107,11 @@ def get_recommendation(responses):
         # Fallback path: no scored vendors
         return get_gpt_fallback_recommendation(responses)
 
-    # If we have scored vendors, take top 1–2 and return formatted response
+    # Take top 1–2 scored vendors
     primary_vendor, primary_score = ranked[0]
     secondary_vendor = ranked[1][0] if len(ranked) > 1 else None
 
-    # Justification can also be GPT-generated if you want richer text
+    # Generate natural-language justification with GPT
     justification_prompt = f"""
     The top recommended vendor is {primary_vendor}.
     Secondary option: {secondary_vendor if secondary_vendor else 'None'}.
@@ -133,10 +131,10 @@ def get_recommendation(responses):
 
     justification = justification_response.output_text.strip()
 
-    # Cost estimation stub (you can replace this with real logic)
+    # Cost estimation stub (replace with YAML-driven data)
     cost_per_agent = 75
-    total_cost = 75 * 100  # assuming 100 agents as placeholder
-    savings = 10000  # stub
+    total_cost = 75 * 100  # placeholder for 100 agents
+    savings = 10000  # placeholder
 
     return {
         "primary_vendor": primary_vendor,
