@@ -1,46 +1,50 @@
 name: Netcall
-sweet_spot: small-medium
-industries:
-  - local government
-it_capacity: low-medium
-main_strength: Tight integration with common UK back-office systems and portals.
+sweet_spot:
+  scale: "Small to mid-size contact centres (10–300 agents), especially in UK public sector"
+  it_capacity: "Low to Medium — strong for councils with limited internal technical resource"
+  industries: ["Local government", "Healthcare", "Housing associations"]
+main_strength: "Low-code workflows, rapid deployment, good omnichannel coverage for councils"
 
-automation_depth: service_requests
+automation_depth:
+  switchboard: true
+  service_requests: true
+  transactions: true
+  complex_agentic: false
+
 channels:
-  coverage:
-    - voice
-    - webchat
-    - email
-    - sms
-  quality: medium
+  voice: true
+  chat: true
+  email: true
+  social: ["SMS", "Facebook Messenger"]
+  notes: "Omnichannel supported through Liberty Converse and Connect; strong voice and webchat focus"
 
 integrations:
   telephony:
-    pbx_teams: Liberty platform PBX, Teams integration
+    pbx_teams: "Works with SIP-based PBXs and integrates natively with Microsoft Teams Voice"
   crm:
-    - Netcall Liberty CRM
-    - Dynamics 365
+    supported: ["Netcall Liberty", "Microsoft Dynamics", "Salesforce"]
+    notes: "Liberty Platform provides both CRM and workflow if needed"
   back_office:
-    approach: Deep UK system integrations
-    connectors:
-      - Capita ONE
-      - Civica
-      - Northgate
-      - APIs for revenues & benefits
-  wem_analytics:
-    native: basic
-    gaps: lacks advanced WEM
+    connectors: "Pre-built adapters for common UK council systems; API and RPA options"
+    typical: ["Revenues & Benefits", "Waste", "Housing", "CRM integrations with Liberty"]
+
+wem_analytics:
+  native: "Basic WEM & MI tools built-in; adequate for public sector"
+  partner: "Can integrate with Power BI or other BI tools"
+  gaps: "Less sophisticated journey analytics vs enterprise vendors"
 
 commercials:
-  pricing_model: per-agent
-  typical_band: low-medium
+  model: "Per agent subscription; low-code platform priced separately"
+  pricing_band: "Low to Mid; attractive for councils"
+  gotchas: "Liberty platform modules sometimes need add-ons for advanced AI"
 
 security:
-  residency: UK
-  certifications:
-    - ISO 27001
-    - NHS DSP Toolkit
+  residency: ["UK"]
+  certifications: ["Cyber Essentials", "ISO 27001"]
+  notes: "UK hosting and support; trusted supplier to many councils"
 
 public_sector_proof:
-  - Numerous UK district and unitary councils
-
+  examples:
+    - "Widely used by UK district and unitary councils"
+    - "Strong in Revenues & Benefits and switchboard automation use cases"
+    - "Liberty Create adopted for low-code service digitisation"
