@@ -1,91 +1,50 @@
 import streamlit as st
-from questionnaires import DISCOVERY, DIAGNOSTIC
-from gpt_client import get_recommendation
-from vendor_loader import load_vendor_cards
+from questionnaires import QUESTIONS
+from matcher import match_vendors
 
-# -----------------------------------------
-# Sidebar for choosing questionnaire type
-# -----------------------------------------
-st.sidebar.title("Settings")
-questionnaire_type = st.sidebar.radio(
-    "Choose questionnaire type:",
-    ("Diagnostic", "Discovery"),  # ✅ Diagnostic first
-    index=0                       # ✅ Default to Diagnostic
-)
+st.set_page_config(page_title="Omnichannel Contact Centre Recommender", layout="wide")
 
-# Select which questionnaire to use
-if questionnaire_type == "Discovery":
-    questionnaire = DISCOVERY
-else:
-    questionnaire = DIAGNOSTIC
-
-# -----------------------------------------
-# Load vendor YAMLs
-# -----------------------------------------
-try:
-    vendors = load_vendor_cards("vendors")
-    print(f"✅ Loaded {len(vendors)} vendor profiles: {list(vendors.keys())}")
-except Exception as e:
-    print(f"❌ Failed to load vendor YAMLs: {e}")
-    vendors = {}
-
-# -----------------------------------------
-# Page title and intro
-# -----------------------------------------
-st.title("Omnichannel Contact Centre Recommendation Tool")
+st.title("🏛️ Council Omnichannel Contact Centre Recommendation Tool")
 
 st.markdown("""
-This tool helps councils identify the most suitable contact centre platform based on 
-their scale, priorities, infrastructure, and channel strategy.
+Answer a few questions about your current environment and ambitions,
+and we'll recommend the most suitable technology supplier based on our structured scoring model.
 """)
 
-# -----------------------------------------
-# Questionnaire rendering
-# -----------------------------------------
-st.header(f"{questionnaire_type} Questionnaire")
-
+# Collect questionnaire responses
 responses = {}
 
-for q in questionnaire:
+st.header("📋 Questionnaire")
+
+for q in QUESTIONS:
     qid = q["id"]
-    qtext = q["label"]  # ✅ Using label now
+    qlabel = q["label"]
+    qtype = q["type"]
+    options = q.get("options", [])
 
-    qtype = q.get("type", "text")
-
-    if qtype == "multiselect":
-        responses[qid] = st.multiselect(qtext, q.get("options", []))
-    elif qtype == "select":
-        responses[qid] = st.selectbox(qtext, [""] + q.get("options", []))  # allow blank
+    if qtype == "select":
+        responses[qid] = st.selectbox(qlabel, [""] + options)
+    elif qtype == "multiselect":
+        responses[qid] = st.multiselect(qlabel, options)
+    elif qtype == "text":
+        responses[qid] = st.text_input(qlabel)
     else:
-        responses[qid] = st.text_input(qtext)
+        st.warning(f"Unknown question type for {qid}")
 
-# -----------------------------------------
-# Recommendation trigger
-# -----------------------------------------
-if st.button("Get Recommendation"):
-    with st.spinner("Generating recommendation..."):
-        try:
-            recommendation = get_recommendation(responses)
-            st.success("Recommendation generated successfully ✅")
+# Submit button
+if st.button("🔍 Get Recommendation"):
+    st.subheader("🧠 Recommendation Engine Results")
+    ranked, justification = match_vendors(responses)
 
-            st.subheader("Top Vendor Recommendation")
-            st.markdown(f"**{recommendation['primary_vendor']}**")
+    if ranked:
+        top_vendor, top_score = ranked[0]
+        st.success(f"🏆 **Recommended Supplier:** {top_vendor}  \n(Score: {top_score})")
 
-            if "secondary_vendor" in recommendation:
-                st.markdown(
-                    f"**Secondary option:** {recommendation['secondary_vendor']}"
-                )
+        if len(ranked) > 1:
+            st.markdown("**Other strong contenders:**")
+            for vendor, score in ranked[1:4]:
+                st.write(f"- {vendor} (Score: {score})")
 
-            st.subheader("Rationale")
-            st.write(recommendation.get("justification", "No detailed rationale returned."))
-
-            if "cost_per_agent" in recommendation:
-                st.subheader("Cost Estimate")
-                st.write(f"💰 Estimated cost per agent: £{recommendation['cost_per_agent']}/month")
-                st.write(f"📊 Estimated total monthly cost: £{recommendation.get('total_cost', 'N/A')}")
-
-            if "savings" in recommendation:
-                st.write(f"💡 Estimated monthly savings: £{recommendation['savings']}")
-
-        except Exception as e:
-            st.error(f"An error occurred while generating recommendation: {e}")
+        st.markdown(f"**Why this recommendation?**  \n{justification}")
+    else:
+        st.warning("No vendors could be matched — try filling more answers.")
