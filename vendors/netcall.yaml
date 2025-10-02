@@ -1,1 +1,46 @@
+name: Netcall
+sweet_spot: small-medium
+industries:
+  - local government
+it_capacity: low-medium
+main_strength: Tight integration with common UK back-office systems and portals.
+
+automation_depth: service_requests
+channels:
+  coverage:
+    - voice
+    - webchat
+    - email
+    - sms
+  quality: medium
+
+integrations:
+  telephony:
+    pbx_teams: Liberty platform PBX, Teams integration
+  crm:
+    - Netcall Liberty CRM
+    - Dynamics 365
+  back_office:
+    approach: Deep UK system integrations
+    connectors:
+      - Capita ONE
+      - Civica
+      - Northgate
+      - APIs for revenues & benefits
+  wem_analytics:
+    native: basic
+    gaps: lacks advanced WEM
+
+commercials:
+  pricing_model: per-agent
+  typical_band: low-medium
+
+security:
+  residency: UK
+  certifications:
+    - ISO 27001
+    - NHS DSP Toolkit
+
+public_sector_proof:
+  - Numerous UK district and unitary councils
 
