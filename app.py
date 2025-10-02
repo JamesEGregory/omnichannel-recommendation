@@ -2,6 +2,12 @@ import streamlit as st
 from questionnaires import DIAGNOSTIC
 from gpt_client import get_recommendation
 
+from vendor_loader import load_vendor_cards
+
+vendors = load_vendor_cards(".")
+print(f"Loaded {len(vendors)} vendor profiles: {list(vendors.keys())}")
+
+
 # -----------------------------------------
 # App header
 # -----------------------------------------
