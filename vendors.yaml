@@ -1,0 +1,230 @@
+- name: AWS
+  sweet_spot:
+    scale: 100+
+    it_capacity: Medium–High
+  strengths:
+    - Scalable cloud-native contact centre with deep AI/ML capability
+    - Excellent integration potential via APIs
+    - Good for councils with developer resource or SI partners
+  automation_depth: "Complex/agentic"
+  channel_support:
+    - Voice
+    - Chat
+    - Email
+    - Social/SMS
+    - Self-service
+  crm_integrations:
+    - Salesforce
+    - Zendesk
+    - Zoho
+  telephony_compatibility:
+    - Cloud-based
+    - SIP
+  back_office_connectivity: "API-first approach, good for councils with middleware or bespoke integration layers"
+  pricing_model: "Consumption (pay-per-use)"
+  uk_data_residency: true
+  support_model: "Global support, UK region available"
+  ideal_for:
+    - Cost-conscious councils scaling over time
+    - Councils with flexible architectures and IT capacity
+    - Complex automation roadmaps
+
+- name: Genesys
+  sweet_spot:
+    scale: 100+
+    it_capacity: Medium–High
+  strengths:
+    - Deep omni-channel orchestration and AI routing
+    - Extensive CRM and telephony compatibility
+    - Good analytics and workforce engagement management
+  automation_depth: "Complex/agentic"
+  channel_support:
+    - Voice
+    - Chat
+    - Email
+    - Social/SMS
+    - Self-service
+  crm_integrations:
+    - Salesforce
+    - Dynamics 365
+    - Zendesk
+  telephony_compatibility:
+    - SIP
+    - Microsoft Teams
+    - Legacy PBX via connectors
+  back_office_connectivity: "Broad set of pre-built connectors and middleware support"
+  pricing_model: "Subscription (per agent/month)"
+  uk_data_residency: true
+  support_model: "Global support with UK presence"
+  ideal_for:
+    - Councils pursuing digital-first strategies with complex service mix
+    - Mature automation ambitions
+    - High service volumes
+
+- name: 8x8
+  sweet_spot:
+    scale: "<100"
+    it_capacity: Low–Medium
+  strengths:
+    - Simple cloud telephony with UCaaS integration
+    - Quick to deploy, low cost
+  automation_depth: "Switchboard"
+  channel_support:
+    - Voice
+    - Chat
+    - Email
+  crm_integrations:
+    - Salesforce
+    - Zoho
+  telephony_compatibility:
+    - Cloud PBX
+    - SIP
+  back_office_connectivity: "Custom APIs, limited native connectors"
+  pricing_model: "Subscription (per agent/month)"
+  uk_data_residency: true
+  support_model: "UK support available"
+  ideal_for:
+    - Councils seeking fast, low-cost telephony upgrades
+    - Simpler estates with limited IT capacity
+
+- name: RingCentral
+  sweet_spot:
+    scale: "<100"
+    it_capacity: Low–Medium
+  strengths:
+    - UCaaS and CCaaS blend
+    - Strong Microsoft integration
+    - Good for councils modernising PBX + telephony
+  automation_depth: "Switchboard"
+  channel_support:
+    - Voice
+    - Chat
+    - Email
+    - SMS
+  crm_integrations:
+    - Salesforce
+    - HubSpot
+    - Zendesk
+  telephony_compatibility:
+    - Cloud PBX
+    - Microsoft Teams
+  back_office_connectivity: "Custom APIs"
+  pricing_model: "Subscription (per agent/month)"
+  uk_data_residency: true
+  support_model: "UK support available"
+  ideal_for:
+    - Councils upgrading telephony first
+    - Smaller operations seeking simple omni-channel
+
+- name: Netcall
+  sweet_spot:
+    scale: "<300"
+    it_capacity: Medium
+  strengths:
+    - Public sector focused
+    - Strong case management + telephony integration
+    - No-code workflow builder
+  automation_depth: "Service requests"
+  channel_support:
+    - Voice
+    - Chat
+    - Email
+    - Social/SMS
+  crm_integrations:
+    - Dynamics 365
+    - Salesforce
+    - Netcall Liberty
+  telephony_compatibility:
+    - SIP
+    - TDM
+  back_office_connectivity: "Good for Revenues & Benefits, Waste, and other core council systems"
+  pricing_model: "Subscription (per agent/month)"
+  uk_data_residency: true
+  support_model: "UK-based support"
+  ideal_for:
+    - Councils modernising telephony and workflows simultaneously
+    - Medium maturity, low-code friendly teams
+
+- name: Cognigy
+  sweet_spot:
+    scale: 100+
+    it_capacity: Medium–High
+  strengths:
+    - Strong conversational AI and automation capability
+    - Good channel coverage
+    - Works well as AI orchestration layer
+  automation_depth: "Complex/agentic"
+  channel_support:
+    - Voice
+    - Chat
+    - Email
+    - Social/SMS
+  crm_integrations:
+    - Salesforce
+    - Dynamics 365
+    - Zendesk
+  telephony_compatibility:
+    - Cloud PBX
+    - API connectors to legacy PBX
+  back_office_connectivity: "API-driven, integrates with modern systems well"
+  pricing_model: "Subscription (per agent/month)"
+  uk_data_residency: true
+  support_model: "Partner-led in UK"
+  ideal_for:
+    - Councils pursuing advanced automation
+    - Layering AI over existing telephony
+
+- name: ICS.ai
+  sweet_spot:
+    scale: "<300"
+    it_capacity: Low–Medium
+  strengths:
+    - Local gov-focused AI vendor
+    - Strong in voice automation / switchboard automation
+    - Good fit for councils starting AI journey
+  automation_depth: "Service requests"
+  channel_support:
+    - Voice
+    - Chat
+  crm_integrations:
+    - Dynamics 365
+    - Salesforce
+  telephony_compatibility:
+    - Cisco PBX
+    - Avaya PBX
+  back_office_connectivity: "Pre-built connectors for common public sector systems"
+  pricing_model: "Subscription (per agent/month)"
+  uk_data_residency: true
+  support_model: "UK-based support"
+  ideal_for:
+    - Councils starting with telephony automation
+    - Public sector-focused estates
+
+- name: Five9
+  sweet_spot:
+    scale: 100+
+    it_capacity: Medium–High
+  strengths:
+    - Strong cloud contact centre functionality
+    - AI augmentation available
+    - Good for hybrid estates
+  automation_depth: "Transactions"
+  channel_support:
+    - Voice
+    - Chat
+    - Email
+    - Social/SMS
+  crm_integrations:
+    - Salesforce
+    - Zendesk
+  telephony_compatibility:
+    - Cloud PBX
+    - SIP
+  back_office_connectivity: "API integrations with major systems"
+  pricing_model: "Subscription (per agent/month)"
+  uk_data_residency: true
+  support_model: "Global with UK presence"
+  ideal_for:
+    - Councils scaling modern contact centres
+    - Hybrid telephony environments
+
