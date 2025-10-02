@@ -40,4 +40,11 @@ commercials:
 
 security:
   residency: ["UK", "EU"]
-  certifications: ["ISO 27001", "Cyber Essentials", "GDPR-complian]()
+  certifications: ["ISO 27001", "Cyber Essentials", "GDPR-compliant"]
+  notes: "Strong UK data residency options via AWS London region"
+
+public_sector_proof:
+  examples:
+    - "Several UK local authorities using Amazon Connect for voice + digital"
+    - "NHS 111 call automation pilots"
+    - "Central gov departments for scalable helplines"
