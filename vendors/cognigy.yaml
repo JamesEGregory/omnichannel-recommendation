@@ -1,9 +1,15 @@
 name: Cognigy
+
 sweet_spot:
-  scale: "Mid to very large deployments; suitable for councils wanting deep automation and AI orchestration"
-  it_capacity: "Medium to High — best for organisations with clear automation strategy or external delivery partners"
-  industries: ["Public sector", "Utilities", "Financial services", "Airlines", "Retail"]
-main_strength: "Deep conversational AI and agentic workflow orchestration across multiple channels"
+  scale: "Mid to large contact centres (50–2,000+ agents)"
+  it_capacity: "Medium to High — best suited for councils with digital or automation teams"
+  industries:
+    - Government
+    - Utilities
+    - Transport
+    - Financial services
+
+main_strength: "Conversational AI, agent assist, and deep workflow automation — particularly strong for service digitisation and complex use cases"
 
 automation_depth:
   switchboard: true
@@ -15,35 +21,49 @@ channels:
   voice: true
   chat: true
   email: true
-  social: ["WhatsApp", "Messenger", "SMS", "Instagram", "Twitter", "Webchat"]
-  notes: "Strong omnichannel orchestration, capable of complex multi-turn conversations and intelligent routing"
+  social:
+    - WhatsApp
+    - Facebook Messenger
+    - SMS
+    - Webchat
+  notes: "Supports all major digital channels; excels in natural language understanding and orchestration across channels"
 
 integrations:
   telephony:
-    pbx_teams: "Integrates with major PBXs and Microsoft Teams via APIs and connectors"
+    pbx_teams: "Integrates with cloud telephony, Microsoft Teams, and traditional PBXs via API"
   crm:
-    supported: ["Salesforce", "Microsoft Dynamics", "Zendesk", "ServiceNow"]
-    notes: "Native connectors and API-first approach for integration"
+    supported:
+      - Salesforce
+      - Microsoft Dynamics 365
+      - Zendesk
+      - ServiceNow
+    notes: "Strong pre-built connectors for major CRMs and ticketing systems"
   back_office:
-    connectors: "API-driven; can orchestrate multiple back-office systems in a single interaction"
-    typical: ["Revenues & Benefits", "Housing", "Social care", "Planning", "Waste"]
+    connectors:
+      - Civica
+      - Capita ONE
+      - NEC (Northgate)
+      - Liquidlogic
+      - SAP
+      - Oracle
+    approach: "Extensive API integration framework; supports RPA for legacy systems"
 
 wem_analytics:
-  native: "Strong conversation analytics, intent recognition, and flow reporting"
-  partner: "Integrates with external BI or data platforms easily"
-  gaps: "Does not provide full contact centre WEM suite — typically paired with CCaaS platform"
+  native: "Provides advanced conversational analytics, intent recognition, and flow performance dashboards"
+  partner: "Easily integrates with BI platforms (e.g., Power BI, Tableau)"
+  gaps: "WEM suite not as comprehensive as Genesys or NICE — typically integrated with existing WEM tools"
 
 commercials:
-  model: "Usage-based (conversation volume) + platform subscription"
-  pricing_band: "Mid-to-High — reflects AI capabilities"
-  gotchas: "Needs a clear delivery strategy; can be overkill if automation maturity is low"
+  model: "Platform licensing plus per conversation/agent pricing"
+  pricing_band: "Mid to High (£80–£140 typical depending on usage and configuration)"
+  gotchas: "Specialist skills required for complex flow building and integrations"
 
-security:
-  residency: ["UK", "EU"]
-  certifications: ["ISO 27001", "SOC 2"]
-  notes: "Available as SaaS or private cloud; UK data residency possible through partners"
+deployment:
+  typical_timeline: "12–20 weeks"
+  notes: "Depends on complexity of conversational flows and integrations; often delivered via partners"
 
 public_sector_proof:
   examples:
-    - "Used by several UK local authorities for voicebot and chatbot services"
-    - "Deployed in German municipalities for end-to-end
+    - "Used by several European governments for citizen service automation"
+    - "Adopted by UK councils for AI-powered service portals and contact deflection"
+    - "Strong fit for councils with digital transformation roadmaps and mature channel strategies"
